@@ -2,42 +2,31 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <!--
+  
   <link rel="stylesheet" href="../../css/general.css" />
   <link rel="stylesheet" href="../../css/header.css" />
   <link rel="stylesheet" href="../../css/ingame.css" />
-  <link rel="stylesheet" href="../../css/modal.css" />-->
-  <link rel="stylesheet" href="/public/css/general.css" />
-  <link rel="stylesheet" href="/public/css/header.css" />
-  <link rel="stylesheet" href="/public/css/ingame.css" />
-  <link rel="stylesheet" href="/public/css//modal.css" />
+  <link rel="stylesheet" href="../../css/modal.css" />
+  
   <title>TemHelper</title>
 </head>
 <body class="in-game">
   <!-- -------------------------------- Header ------------------------------- -->
 
   <header id="header" class="app-header">
-    <!--<img src="../../img/header_icon.svg" />-->
-    <img src="/public/img/header_icon.svg" />
+    <img src="../../img/header_icon.svg" />
     <div class="tab">
-      <input type="radio" id="dmgcalc" name="mTabs" checked="checked"><label for="dmgcalc" class="tabcontent" onclick="loadPage('damageCalculator.html')">Damage Calculator</label>
-      <input type="radio" id="team" name="mTabs" checked="checked"><label for="team" class="tabcontent" onclick="loadPage('teamCreator.html')">Team</label>
-      <input type="radio" id="freetem" name="mTabs" checked="checked"><label for="freetem" class="tabcontent" onclick="loadPage('freeTem.html')">FreeTem</label>
-      <input type="radio" id="catchrate" name="mTabs" checked="checked"><label for="catchrate" class="tabcontent" onclick="loadPage('catchRate.html')">Catch Rate</label>
+      <button id="dmgcalc" class="tabcontent">Damage Calculator</button>
+      <button id="team" class="tabcontent">Team</button>
+      <button id="freetem" class="tabcontent">FreeTem</button>
+      <button id="catchrate" class="tabcontent">Catch Rate</button>
     </div>
     <div class="window-controls-group">
       <button id="closeButton" class="window-control window-control-close" />
     </div>
   </header>
-
+  <div></div>
   <!-- --------------------------------- Main -------------------------------- -->
-  <main>
-    <script type="text/javascript">
-      function loadPage(page){
-        fetch(page).then(r => r.text()).then(text => document.getElementById('content').innerHTML = text);
-      }
-    </script>
-    <div id="content"></div>
-  </main>
+
 </body>
 </html>

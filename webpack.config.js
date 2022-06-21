@@ -9,7 +9,12 @@ module.exports = env => ({
     entry: {
         background: './src/background/background.ts',
         desktop: './src/desktop/desktop.ts',
-        in_game: './src/in_game/in_game.ts'
+        in_game: './src/in_game/in_game.ts',
+        damageCalculator: './src/in_game/damageCalculator.ts',
+        catchRate: './src/in_game/catchRate.ts',
+        freeTem: './src/in_game/freeTem.ts',
+        teamCreator: './src/in_game/teamCreator.ts',
+
     },
     devtool: 'inline-source-map',
     module: {
@@ -47,6 +52,26 @@ module.exports = env => ({
             template: './src/in_game/in_game.html',
             filename: path.resolve(__dirname, './dist/in_game.html'),
             chunks: ['in_game']
+        }),
+        new HtmlWebpackPlugin({
+            template: './src/in_game/damageCalculator.html',
+            filename: path.resolve(__dirname, './dist/damageCalculator.html'),
+            chunks: ['damageCalculator']
+        }),
+        new HtmlWebpackPlugin({
+            template: './src/in_game/freeTem.html',
+            filename: path.resolve(__dirname, './dist/freeTem.html'),
+            chunks: ['freeTem']
+        }),
+        new HtmlWebpackPlugin({
+            template: './src/in_game/catchRate.html',
+            filename: path.resolve(__dirname, './dist/catchRate.html'),
+            chunks: ['catchRate']
+        }),
+        new HtmlWebpackPlugin({
+            template: './src/in_game/teamCreator.html',
+            filename: path.resolve(__dirname, './dist/teamCreator.html'),
+            chunks: ['teamCreator']
         }),
         new OverwolfPlugin(env)
     ]

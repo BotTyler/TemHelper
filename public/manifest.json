@@ -70,14 +70,55 @@
         "resizable": true,
         "transparent": true,
         "override_on_update": true,
-        "size": {
-          "width": 1212,
-          "height": 699
-        },
-        "min_size": {
-          "width": 1212,
-          "height": 699
-        }
+        "restrict_to_game_bounds":true
+      },
+      "catchRate":{
+        "file":"catchRate.html",
+        "transparent": true,
+        "resizable":true,
+        "show_in_taskbar":false,
+        "override_on_update": true,
+        "disable_rightclick":true,
+        "in_game_only":true,
+        "restrict_to_game_bounds":true,
+        "is_alt_f4_blocked":true
+      },
+      "damageCalculator":{
+        "file":"damageCalculator.html",
+        "transparent": true,
+        "resizable":true,
+        "show_in_taskbar":false,
+        "override_on_update": true,
+        "disable_rightclick":true,
+        "in_game_only":true,
+        "restrict_to_game_bounds":true,
+        "is_alt_f4_blocked":true
+
+
+      },
+      "freeTem":{
+        "file":"freeTem.html",
+        "transparent": true,
+        "resizable":true,
+        "show_in_taskbar":false,
+        "override_on_update": true,
+        "disable_rightclick":true,
+        "in_game_only":true,
+        "restrict_to_game_bounds":true,
+        "is_alt_f4_blocked":true
+        
+      },
+      "teamCreator":{
+        "file":"teamCreator.html",
+        "transparent": true,
+        "resizable":true,
+        "show_in_taskbar":false,
+        "override_on_update": true,
+        "disable_rightclick":true,
+        "in_game_only":true,
+        "restrict_to_game_bounds":true,
+        "is_alt_f4_blocked":true
+        
       }
     },
     "game_targeting": {

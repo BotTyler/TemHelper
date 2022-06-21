@@ -17,11 +17,26 @@ import WindowState = overwolf.windows.WindowStateEx;
 class InGame extends AppWindow {
   private static _instance: InGame;
   private _gameEventsListener: OWGamesEvents;
+  private dmgCalc: HTMLElement;
+  private team: HTMLElement;
+  private freetem: HTMLElement;
+  private catchrate: HTMLElement;
 
 
   private constructor() {
     super(kWindowNames.inGame);
-    
+    this.dmgCalc = document.getElementById('dmgcalc');
+    this.team = document.getElementById('team');
+    this.freetem = document.getElementById('freetem');
+    this.catchrate = document.getElementById('catchrate');
+
+
+
+    this.dmgCalc.addEventListener('click', function(){
+      overwolf.windows.obtainDeclaredWindow('damageCalculator', function(result:overwolf.windows.WindowResult){
+          overwolf.windows.restore(result.window.name);
+      });
+    });
   }
 
   public static instance() {
@@ -47,5 +62,6 @@ class InGame extends AppWindow {
 
     return (info && info.isRunning && info.classId) ? info.classId : null;
   }
+
 }
 InGame.instance().run();
