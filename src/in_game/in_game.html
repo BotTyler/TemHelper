@@ -2,54 +2,46 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
+  <!--
   <link rel="stylesheet" href="../../css/general.css" />
   <link rel="stylesheet" href="../../css/header.css" />
   <link rel="stylesheet" href="../../css/ingame.css" />
-  <link rel="stylesheet" href="../../css/modal.css" />
-  <title>Overwolf Sample App - In-Game page</title>
+  <link rel="stylesheet" href="../../css/modal.css" />-->
+  <link rel="stylesheet" href="/public/css/general.css" />
+  <link rel="stylesheet" href="/public/css/header.css" />
+  <link rel="stylesheet" href="/public/css/ingame.css" />
+  <link rel="stylesheet" href="/public/css//modal.css" />
+  <title>TemHelper</title>
 </head>
 <body class="in-game">
   <!-- -------------------------------- Header ------------------------------- -->
 
   <header id="header" class="app-header">
-    <img src="../../img/header_icon.svg" />
-    <h1>Sample App / in-game window</h1>
-    <h1 class="hotkey-text">
-      Show/Hide Hotkey:
-      <kbd id="hotkey"></kbd>
-    </h1>
+    <!--<img src="../../img/header_icon.svg" />-->
+    <img src="/public/img/header_icon.svg" />
+    <div class="tab">
+      <input type="radio" id="dmgcalc" name="mTabs" checked="checked"><label for="dmgcalc" class="tabcontent">Damage Calculator</label>
+      <input type="radio" id="team" name="mTabs" checked="checked"><label for="team" class="tabcontent">Team</label>
+      <input type="radio" id="freetem" name="mTabs" checked="checked"><label for="freetem" class="tabcontent">FreeTem</label>
+      <input type="radio" id="catchrate" name="mTabs" checked="checked"><label for="catchrate" class="tabcontent">Catch Rate</label>
+      <!--
+      <button class="tabcontent">Damage Calculator</button>
+      <button class="tabcontent">Team</button>
+      <button class="tabcontent">FreeTem</button>
+      <button class="tabcontent">Catch Rate</button>-->
+
+
+    </div>
     <div class="window-controls-group">
-      <button id="minimizeButton" class="window-control window-control-minimize" />
-      <button id="maximizeButton" class="window-control window-control-maximize" />
       <button id="closeButton" class="window-control window-control-close" />
     </div>
   </header>
 
   <!-- --------------------------------- Main -------------------------------- -->
   <main>
-    <div id="logs">
-      <div id="events" class="logColumn">
-        <h1>Game Events</h1>
-        <div id="eventsLog" class="dataText">
-        </div>
-      </div>
-      <div id="infoUpdates" class="logColumn">
-        <h1>Info Updates</h1>
-        <div id="infoLog" class="dataText"></div>
-      </div>
-    </div>
-    <div id="other">
-      <h1>Real-time Game Data</h1>
-      <p id="infoParagraph">
-        The background controller of this app is listening to all the game
-        events and info updates, and sends them to this window, that prints
-        them to the screen. Some specific events (Match Start/End, Kill and
-        Death) are painted in <span style="color: #00DEFA">teal</span> and
-        logged to the developers console.
-      </p>
-    </div>
+    
   </main>
-
+<!--
   <script>
     // Standard Google Universal Analytics code
     (function (i, s, o, g, r, a, m) {
@@ -67,6 +59,6 @@
     ga('set', 'checkProtocolTask', function () { });
     ga('require', 'displayfeatures');
     ga('send', 'pageview', '/in_game.html');
-  </script>
+  </script>-->
 </body>
 </html>

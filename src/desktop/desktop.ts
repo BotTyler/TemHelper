@@ -5,3 +5,4 @@ import { kWindowNames } from "../consts";
 // In our case, our desktop window has no logic - it only displays static data.
 // Therefore, only the generic AppWindow class is called.
 new AppWindow(kWindowNames.desktop);
+

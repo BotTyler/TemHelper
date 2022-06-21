@@ -2,12 +2,13 @@
   "manifest_version": 1,
   "type": "WebApp",
   "meta": {
-    "name": "Sample App",
-    "author": "Overwolf",
-    "version": "3.0.3",
+    "name": "Tem Helper",
+    "author": "Tyler Jarboe",
+    "version": "1.0.0",
     "minimum-overwolf-version": "0.160.0",
-    "description": "An example app for developers new to Overwolf",
-    "dock_button_title": "Sample - TS - TEMTEM",
+    "description": "A helper for the game Temtem",
+    "dock_button_title": "TemHelper",
+    
     "icon": "icons/IconMouseOver.png",
     "icon_gray": "icons/IconMouseNormal.png",
     "launcher_icon": "icons/desktop-icon.ico",
@@ -82,18 +83,18 @@
     "game_targeting": {
       "type": "dedicated",
       "game_ids": [
-        216361
+        21636
       ]
     },
     "game_events": [
-      216361
+      21636
     ],
     "launch_events": [
       {
         "event": "GameLaunch",
         "event_data": {
           "game_ids": [
-            216361
+            21636
           ]
         },
         "start_minimized": false

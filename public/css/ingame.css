@@ -138,3 +138,50 @@ button.logCopy:hover {
   background: #8d8d8d;
   color: #ffffff;
 }
+
+/* Style the tab */
+.tab {
+  width: auto;
+  display: flex;
+  overflow: hidden;
+  margin-left: 20px;
+}
+
+/* Style the buttons that are used to open the tab content */
+.tab label {
+  width: auto;
+  background-color: #333333;
+  float: left;
+  border: 1px solid #ccc;
+  outline: #ffffff;
+  cursor: pointer;
+  padding: 14px 16px;
+  margin-left: 5px;
+  transition: 0.3s;
+  border-radius: 15px 30px;
+}
+
+/* Change background color of buttons on hover */
+.tab label:hover {
+  background-color: #bb86fc;
+}
+
+
+
+/* Style the tab content */
+.tabcontent {
+  color: #ffffff;
+  border-top: none;
+  font-size: small;
+  font-family: cursive;
+  user-select: none;
+}
+
+.tab input[type="radio"]{
+  display: none;
+}
+.tab input[type="radio"]:checked + label{
+  color: black;
+  background: #d3bbf1;
+}
+
