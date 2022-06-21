@@ -145,6 +145,8 @@ button.logCopy:hover {
   display: flex;
   overflow: hidden;
   margin-left: 20px;
+  margin-top: 5px;
+  margin-bottom: 5px;
 }
 
 /* Style the buttons that are used to open the tab content */
