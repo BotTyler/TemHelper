@@ -22,7 +22,6 @@ class InGame extends AppWindow {
   private freetem: HTMLElement;
   private catchrate: HTMLElement;
 
-
   private constructor() {
     super(kWindowNames.inGame);
     this.dmgCalc = document.getElementById('dmgcalc');
@@ -32,11 +31,15 @@ class InGame extends AppWindow {
 
 
 
+  
     this.dmgCalc.addEventListener('click', function(){
       overwolf.windows.obtainDeclaredWindow('damageCalculator', function(result:overwolf.windows.WindowResult){
           overwolf.windows.restore(result.window.name);
       });
     });
+
+
+    
   }
 
   public static instance() {
@@ -51,10 +54,17 @@ class InGame extends AppWindow {
     const gameClassId = await this.getCurrentGameClassId();
     const gameFeatures = kGamesFeatures.get(gameClassId);
 
-    console.log('game features: ' + gameFeatures);
-
-
-
+    //console.log('game features: ' + gameFeatures);
+/*
+    overwolf.windows.onMessageReceived.addListener(function(message){
+      console.log("MSG RECIEVED: " + message.id);
+      if(message.id ===  '1'){
+        //this.listTem = message.content;
+        //console.log('Message received', message.content);
+        console.log(message.content);
+      }
+    });
+*/
   }
 
   private async getCurrentGameClassId(): Promise<number | null> {

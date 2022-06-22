@@ -7,6 +7,7 @@ export class AppWindow {
   protected mainWindow: OWWindow;
   protected maximized: boolean = false;
 
+
   constructor(windowName) {
     this.mainWindow = new OWWindow('background');
     this.currWindow = new OWWindow(windowName);
@@ -21,13 +22,10 @@ export class AppWindow {
     this.setDrag(header);
 
     closeButton.addEventListener('click', () => {
-      this.mainWindow.close();
+      this.currWindow.close();
     });
 
-
-    const json = '{"result":true, "count":42, "random":234}';
-    let obj:myObj = JSON.parse(json);
-    console.log(obj.result);
+    
   }
 
   public async getWindowState() {
@@ -39,9 +37,7 @@ export class AppWindow {
   }
 
 
+
   
 }
-interface myObj{
-    result:boolean;
-    count: number;
-}
+

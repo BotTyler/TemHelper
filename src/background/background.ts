@@ -3,6 +3,7 @@ import {
   OWGameListener,
   OWWindow
 } from '@overwolf/overwolf-api-ts';
+import { TemData } from "../TemData";
 
 import { kWindowNames, kGameClassIds } from "../consts";
 
@@ -19,8 +20,9 @@ class BackgroundController {
   private static _instance: BackgroundController;
   private _windows: Record<string, OWWindow> = {};
   private _gameListener: OWGameListener;
-
+  public temData:TemData;
   private constructor() {
+    this.temData = new TemData();
     // Populating the background controller's window dictionary
     this._windows[kWindowNames.desktop] = new OWWindow(kWindowNames.desktop);
     this._windows[kWindowNames.inGame] = new OWWindow(kWindowNames.inGame);
@@ -41,7 +43,7 @@ class BackgroundController {
     if (!BackgroundController._instance) {
       BackgroundController._instance = new BackgroundController();
     }
-
+    
     return BackgroundController._instance;
   }
 
@@ -53,8 +55,32 @@ class BackgroundController {
     const currWindowName = (await this.isSupportedGameRunning())
       ? kWindowNames.inGame
       : kWindowNames.desktop;
+    while(this.temData.temList === undefined && this.temData.err != 1){
+      //stall the program until the webrequest comes back
+    }
+    console.log('Continued');
+    window.temData = this.temData;
+    /*
+    if(BackgroundController.temData.err === 1 && currWindowName === kWindowNames.inGame){
+      // passed the data collection
+      //this.cLogTemTemData(BackgroundController.temList);
+      // send a message
+      overwolf.windows.obtainDeclaredWindow(kWindowNames.inGame, function(result){
+        console.log('Window name: ' + result.window.name + "\nWindow Id: " + result.window.id);
+        
+    overwolf.windows.sendMessage(kWindowNames.inGame, '1', "asdf", (status)=>{console.log("MSG STATUS: "+ status.success)});
+      });
+      console.log("MSG SENT");
+      //BackgroundController.temData.cLogTemTemData(BackgroundController.temData.temList);
 
+
+    }
+    */
+    this.temData.cLogTemTemData(this.temData.temList);
+    console.log("switching screens");
     this._windows[currWindowName].restore();
+
+
   }
 
   private async onAppLaunchTriggered(e: AppLaunchTriggeredEvent) {
@@ -97,6 +123,7 @@ class BackgroundController {
   private isSupportedGame(info: RunningGameInfo) {
     return kGameClassIds.includes(info.classId);
   }
+
 }
 
 BackgroundController.instance().run();

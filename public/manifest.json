@@ -70,7 +70,15 @@
         "resizable": true,
         "transparent": true,
         "override_on_update": true,
-        "restrict_to_game_bounds":true
+        "restrict_to_game_bounds":true,
+        "min_size":{
+          "width":300,
+          "height":100
+        },
+        "size": {
+          "width": 1212,
+          "height": 699
+        }
       },
       "catchRate":{
         "file":"catchRate.html",
