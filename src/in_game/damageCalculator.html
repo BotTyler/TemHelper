@@ -7,18 +7,43 @@
     <meta name='viewport' content='width=device-width, initial-scale=1'>
     <link rel='stylesheet' type='text/css' media='screen' href='main.css'>
     <script src='main.js'></script>
+    
     <link rel="stylesheet" href="../../css/general.css" />
     <link rel="stylesheet" href="../../css/header.css" />
     <link rel="stylesheet" href="../../css/ingame.css" />
     <link rel="stylesheet" href="../../css/modal.css" />
+    
+    <link rel="stylesheet" href="/public/css/general.css" />
+    <link rel="stylesheet" href="/public/css/header.css" />
+    <link rel="stylesheet" href="/public/css/ingame.css" />
+    <link rel="stylesheet" href="/public/css/modal.css" />
+
+
+
+
+    <style>
+        table,th,td {border:1px solid white; color: white; text-align: center;}
+        .scrollit{
+            overflow-y: scroll;
+            height: 500px;
+        }
+    </style>
 </head>
 <body>
     <header id="header" class="app-header">
         <button id="closeButton" class="window-control window-control-close" ></button>
     </header>
-    
-    <h1>Damage Calculator</h1>
-    <p>This is the Damage Calculator page</p>
-    <img src="https://static.wikia.nocookie.net/temtem_gamepedia_en/images/9/99/Oree.png" alt="Girl in a jacket" width="25" height="25">
+    <div class="scrollit">
+        <table id="temTable">
+            <tr>
+                <th>number</th>
+                <th>name</th>
+                <th>types</th>
+                <th>traits</th>
+                <th>icon</th>
+            </tr>
+        </table>
+    </div>
+
 </body>
 </html>

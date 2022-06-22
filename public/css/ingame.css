@@ -172,7 +172,6 @@ button.logCopy:hover {
 }
 
 
-
 /* Style the tab content */
 .tabcontent {
   color: #ffffff;
@@ -189,4 +188,9 @@ button.logCopy:hover {
   color: black;
   background: #d3bbf1;
 }
+.hover{
+  opacity: .5;
+}
+
+.hover:hover{opacity: 1;}
 

@@ -58,6 +58,8 @@ class BackgroundController {
     while(this.temData.temList === undefined && this.temData.err != 1){
       //stall the program until the webrequest comes back
     }
+    this.temData.sortList();
+    this.temData.cLogTemTemData(this.temData.temList);
     console.log('Continued');
     window.temData = this.temData;
     /*
@@ -76,7 +78,6 @@ class BackgroundController {
 
     }
     */
-    this.temData.cLogTemTemData(this.temData.temList);
     console.log("switching screens");
     this._windows[currWindowName].restore();
 
