@@ -59,8 +59,7 @@ class BackgroundController {
       //stall the program until the webrequest comes back
     }
     this.temData.sortList();
-    this.temData.cLogTemTemData(this.temData.temList);
-    console.log('Continued');
+    //this.temData.cLogTemTemData(this.temData.temList);
     window.temData = this.temData;
     /*
     if(BackgroundController.temData.err === 1 && currWindowName === kWindowNames.inGame){
@@ -78,6 +77,11 @@ class BackgroundController {
 
     }
     */
+    overwolf.windows.obtainDeclaredWindow(kWindowNames.TemTemSelector, function(result:overwolf.windows.WindowResult){
+      overwolf.windows.hide(result.window.name);
+      console.log('asdf');
+  });
+
     console.log("switching screens");
     this._windows[currWindowName].restore();
 

@@ -14,6 +14,7 @@ module.exports = env => ({
         catchRate: './src/in_game/catchRate.ts',
         freeTem: './src/in_game/freeTem.ts',
         teamCreator: './src/in_game/teamCreator.ts',
+        TemTemSelector: './src/in_game/TemTemSelector.ts',
 
     },
     devtool: 'inline-source-map',
@@ -72,6 +73,11 @@ module.exports = env => ({
             template: './src/in_game/teamCreator.html',
             filename: path.resolve(__dirname, './dist/teamCreator.html'),
             chunks: ['teamCreator']
+        }),        
+        new HtmlWebpackPlugin({
+            template: './src/in_game/TemTemSelector.html',
+            filename: path.resolve(__dirname, './dist/TemTemSelector.html'),
+            chunks: ['TemTemSelector']
         }),
         new OverwolfPlugin(env)
     ]

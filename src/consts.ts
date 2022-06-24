@@ -15,5 +15,6 @@ export const kWindowNames = {
   damageCalculator: 'damageCalculator',
   catchRate: 'catchRate',
   freeTem: 'freeTem',
-  teamCreator: 'teamCreator'
+  teamCreator: 'teamCreator',
+  TemTemSelector: 'TemTemSelector'
 };

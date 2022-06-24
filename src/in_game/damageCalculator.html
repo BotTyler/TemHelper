@@ -12,12 +12,8 @@
     <link rel="stylesheet" href="../../css/header.css" />
     <link rel="stylesheet" href="../../css/ingame.css" />
     <link rel="stylesheet" href="../../css/modal.css" />
-    
-    <link rel="stylesheet" href="/public/css/general.css" />
-    <link rel="stylesheet" href="/public/css/header.css" />
-    <link rel="stylesheet" href="/public/css/ingame.css" />
-    <link rel="stylesheet" href="/public/css/modal.css" />
-
+    <link rel="stylesheet" href="../../css/overlayImages.css" />
+    <link rel="stylesheet" href="../../css/overlayImages.css" />
 
 
 
@@ -29,10 +25,74 @@
         }
     </style>
 </head>
-<body>
-    <header id="header" class="app-header">
-        <button id="closeButton" class="window-control window-control-close" ></button>
-    </header>
+<body class="fitContent hover transparent">
+    <div class="fitContent">
+        <header id="header" class="app-header">
+            <button id="closeButton" class="window-control window-control-close" ></button>
+        </header>
+        <table class="dmgTable">
+                <tr>
+                    <th></th>
+                    <th><img src="../../temtypes/Neutral.png" class="images"/></th>
+                    <th><img src="../../temtypes/Fire.png" class="images"/></th>
+                    <th><img src="../../temtypes/Water.png" class="images"/></th>
+                    <th><img src="../../temtypes/Nature.png" class="images"/></th>
+                    <th><img src="../../temtypes/Electric.png" class="images"/></th>
+                    <th><img src="../../temtypes/Earth.png" class="images"></th>
+                    <th><img src="../../temtypes/Mental.png" class="images"/></th>
+                    <th><img src="../../temtypes/Wind.png" class="images"></th>
+                    <th><img src="../../temtypes/Digital.png" class="images"/></th>
+                    <th><img src="../../temtypes/Melee.png" class="images" /></th>
+                    <th><img src="../../temtypes/Crystal.png" class="images"/></th>
+                    <th><img src="../../temtypes/Toxic.png" class="images"/></th>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="roundBtnDiv">
+                            <button id="temtem1" class="round">+</button>
+                        </div>
+                    </td>
+                    <td id="Neutral1"></td>
+                    <td id="Fire1"></td>
+                    <td id="Water1"></td>
+                    <td id="Nature1"></td>
+                    <td id="Electric1"></td>
+                    <td id="Earth1"></td>
+                    <td id="Mental1"></td>
+                    <td id="Wind1"></td>
+                    <td id="Digital1"></td>
+                    <td id="Meele1"></td>
+                    <td id="Crystal1"></td>
+                    <td id="Toxic1"></td>
+
+                </tr>                
+                <tr>
+                    <td>
+                        <div class="roundBtnDiv">
+                            <button id="temtem1" class="round">+</button>
+                        </div>
+                        <td id="Neutral2"></td>
+                        <td id="Fire2"></td>
+                        <td id="Water2"></td>
+                        <td id="Nature2"></td>
+                        <td id="Electric2"></td>
+                        <td id="Earth2"></td>
+                        <td id="Mental2"></td>
+                        <td id="Wind2"></td>
+                        <td id="Digital2"></td>
+                        <td id="Meele2"></td>
+                        <td id="Crystal2"></td>
+                        <td id="Toxic2"></td>
+                    </td>
+
+                </tr>
+            </table>
+        </div>
+    </div>
+
+
+
+    <!--
     <div class="scrollit">
         <table id="temTable">
             <tr>
@@ -44,6 +104,6 @@
             </tr>
         </table>
     </div>
-
+-->
 </body>
 </html>
