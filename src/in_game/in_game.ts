@@ -40,7 +40,7 @@ class InGame extends AppWindow {
 
     this.team.addEventListener('click', function(){
       overwolf.windows.obtainDeclaredWindow('TemTemSelector', function(result:overwolf.windows.WindowResult){
-          overwolf.windows.restore(result.window.name);
+          //overwolf.windows.restore(result.window.name);
       });
     });
 

@@ -11,20 +11,31 @@ export class AppWindow {
   constructor(windowName) {
     this.mainWindow = new OWWindow('background');
     this.currWindow = new OWWindow(windowName);
+
+
     if(windowName === kWindowNames.inGame){
 
       overwolf.windows.changePosition(windowName,0,0);
     }
-    const closeButton = document.getElementById('closeButton');
 
     const header = document.getElementById('header');
 
     this.setDrag(header);
+    if(windowName === kWindowNames.TemTemSelector){
+      // only have the minimize btn
 
-    closeButton.addEventListener('click', () => {
-      this.currWindow.close();
-    });
+      const minbtn = document.getElementById('minButton');
 
+      minbtn.addEventListener('click', () => {
+        this.currWindow.minimize();
+      });
+    }else{
+      const closeButton = document.getElementById('closeButton');
+
+      closeButton.addEventListener('click', () => {
+        this.currWindow.close();
+      });
+    }
     
   }
 

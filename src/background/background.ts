@@ -55,9 +55,11 @@ class BackgroundController {
     const currWindowName = (await this.isSupportedGameRunning())
       ? kWindowNames.inGame
       : kWindowNames.desktop;
-    while(this.temData.temList === undefined && this.temData.err != 1){
+    while(this.temData.temList === undefined || this.temData.dmgTable === undefined || this.temData.temListErr != 1 || this.temData.tableErr != 1){
       //stall the program until the webrequest comes back
     }
+    console.log('Sorting');
+
     this.temData.sortList();
     //this.temData.cLogTemTemData(this.temData.temList);
     window.temData = this.temData;
@@ -79,7 +81,7 @@ class BackgroundController {
     */
     overwolf.windows.obtainDeclaredWindow(kWindowNames.TemTemSelector, function(result:overwolf.windows.WindowResult){
       overwolf.windows.hide(result.window.name);
-      console.log('asdf');
+      //console.log('asdf');
   });
 
     console.log("switching screens");
