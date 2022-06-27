@@ -9,6 +9,8 @@ import { kWindowNames, kGamesFeatures } from "../consts";
 
 import WindowState = overwolf.windows.WindowStateEx;
 
+
+
 // The window displayed in-game while a game is running.
 // It listens to all info events and to the game events listed in the consts.ts file
 // and writes them to the relevant log using <pre> tags.
@@ -29,7 +31,7 @@ class InGame extends AppWindow {
     this.freetem = document.getElementById('freetem');
     this.catchrate = document.getElementById('catchrate');
 
-
+    
 
   
     this.dmgCalc.addEventListener('click', function(){
