@@ -1,0 +1,76 @@
+.parentOverlayDiv {
+    height: 75px;
+    width: 75px;
+  }
+
+
+  .imgBot{
+    height: 100%;
+    width: 100%;
+    border: 5px solid pink;
+    border-radius: 100%;
+  }
+
+  .roundBtnDiv{
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+    width: 100%;
+    height: 100%;
+  }
+
+  .roundBtnDiv img {
+    background-color: transparent;
+    color: white;
+    border: 3pt solid lightblue;
+    padding: 5px;
+    font-size: 25px;
+    height: 35px;
+    width: 35px;
+    box-shadow: 0 2px 4px darkslategray;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    float: left;
+  }
+  
+  .roundBtnDiv button:active {
+    background-color: #48abe0;
+    box-shadow: 0 0 2px darkslategray;
+    transform: translateY(2px);
+  }
+
+  .round {
+    border-radius: 100%;
+  }
+
+  .roundBtnInnerDiv{
+    flex-direction: row;
+  }
+
+  .fitContent{
+    width: fit-content;
+    height: fit-content;
+  }
+  
+  .dmgTable{
+    border-collapse: collapse;
+    background-color: darkgrey;
+  }
+  .dmgtabke tr{
+    border:solid;
+    border-width: 1px 0;
+  }
+
+  .transparent{
+    background-color: transparent;
+  }
+
+  .border{
+    border: 1px black solid;
+  }
+
+  .images{
+    width: 25px;
+    height: 25px;
+  }
+

@@ -1,0 +1,291 @@
+.freeTemWindowSize{
+    width: 390px;
+    height: 170px;
+    overflow: hidden;
+  }
+  .overflowhidden{
+    overflow: hidden;
+  }
+
+  .hover{
+    opacity: .5;
+  }
+  
+  .hover:hover{opacity: 1;}
+  .bodyDiv{
+    
+    width: initial;
+    height: initial;
+  }
+  .calcContent{
+    width: inherit;
+    height: fit-content; 
+    margin-top: 7px;
+    display: block;
+    align-items: center;
+    justify-content: center;
+  }
+  .flex{
+    display: flex;
+
+  }
+  .block{
+    display: block;
+    width: 100%;
+    outline: none;
+    margin-right: 5px;
+    padding-left: 5px;
+    padding-bottom: 5px;
+    border-left: 1px solid white;
+  }
+
+  .background{
+    background: grey;
+    border: 1px solid black;
+  }
+  .transparent{
+    background: transparent;
+  }
+
+  .images{
+    width: 25px;
+    height: 25px;
+    padding: 5px;
+  }
+
+  .calcContentDivs{
+    display: flex;
+    align-items: center;
+    align-content: center;
+    justify-content: center;
+    width: 100%;
+    height: fit-content;
+  }
+
+  .calcContentDivs label{
+    width: fit-content;
+    height: fit-content;
+    color: white;
+  }
+
+  .catchPercentDiv{
+    margin-top: 10px;
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    align-content: center;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .FLCBDiv{
+    margin-top: 10px;
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    align-content: center;
+    align-items: center;
+    justify-content: center;
+  }
+
+
+  .levelDiv{
+    height: fit-content;
+    width: 100%;
+    margin: 10px;
+    display: flex;
+    align-content: center;
+    align-items: center;
+    justify-content: center;
+  }
+  .levelDiv label{
+    width: 100%;
+    height: fit-content;
+    color: white;
+    font-size: 12px;
+    margin-left: 10px;
+  }
+  .roundBtnDiv{
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+    width: 110px;
+    height: 110px;
+    margin-top: 10px;
+    margin-left: 10px;
+    margin-right: 20px;
+    margin-bottom: 10px;
+  }
+
+  .roundBtnDiv img {
+    background-color: transparent;
+    color: white;
+    border: 3pt solid lightblue;
+    font-size: 25px;
+    height: inherit;
+    width: inherit;
+    box-shadow: 0 2px 4px darkslategray;
+    cursor: pointer;
+    float: left;
+  }  
+  .roundBtnEffects{
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+    width: 25px;
+    height: 25px;
+    margin-top: 10px;
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-bottom: 10px;
+  }
+  .effectsDiv{
+    width: 50%;
+    display: flex;
+    align-items: center;
+    align-content: center;
+    justify-content: center;
+    margin-right: 5px;
+  }
+  .freeTemReward{
+    width: 50%;
+    display: flex;
+    align-items: center;
+    align-content: center;
+    justify-content: center;
+    
+  }
+  .roundBtnEffects img {
+    background-color: transparent;
+    color: white;
+    border: 3pt solid lightblue;
+    font-size: 25px;
+    height: inherit;
+    width: inherit;
+    box-shadow: 0 2px 4px darkslategray;
+    cursor: pointer;
+    float: left;
+  }  
+
+  .round {
+    border-radius: 100%;
+  }
+  .slidecontainer {
+    width: 50%; /* Width of the outside container */
+    display: flex;
+    align-content: center;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  /* The slider itself */
+  .slider {
+    -webkit-appearance: none;  /* Override default CSS styles */
+    appearance: none;
+    width: 100%; 
+    height: 5px; 
+    background: white; 
+    outline: none; 
+    opacity: 1; 
+
+  }
+
+.slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 25px;
+  height: 25px;
+  border: 0;
+  background-image: url('../TemTemIcons/Pansuns.png');
+  background-size: contain;
+  background-position: center center;
+  background-repeat: no-repeat;
+  cursor: pointer;
+}
+
+  /* The slider itself */
+  .slider2 {
+    -webkit-appearance: none;  /* Override default CSS styles */
+    appearance: none;
+    width: 100%; 
+    height: 5px; 
+    background: white; 
+    outline: none; 
+    opacity: 1; 
+
+  }
+
+.slider2::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 25px;
+  height: 25px;
+  border: 0;
+  background-image: url('../temtypes/Heart.png');
+  background-size: contain;
+  background-position: center center;
+  background-repeat: no-repeat;
+  cursor: pointer;
+}
+
+.roundBtnEffects ul{
+  visibility: hidden;
+  position: absolute;
+  z-index: 100;
+  transition: all 0.1s ease;
+  width: 200px;
+  display: inline;
+}
+
+.roundBtnEffects:hover ul{
+  visibility: visible;
+  width: fit-content;
+  background: transparent;
+  width: 200px;
+  display: inline;
+}
+.roundBtnEffects ul:hover{
+  visibility: visible;
+}
+
+ 
+
+  .roundBtnEffects ul li{
+    width: fit-content;
+    height: fit-content;
+    color: #fff;
+    display: block;
+    float: left;
+    text-decoration: none;
+    margin-left: 5px;
+  }
+
+ .popupImg{
+  width: 35px !important;
+  height: 35px !important;
+  background: black !important;
+ }
+
+ .popupImg2{
+  width: 17px !important;
+  height: 17px !important;
+  background: black !important;
+ }
+
+ .position1{
+  top: 120px;
+  left: 147px;
+ }
+
+ .position2{
+  top: 118px;
+  left: 172px;
+ }
+
+ .FLCBlabel{
+  font-size: 10px;
+  color: white;
+  margin: 0%;
+ }
+
+ 
