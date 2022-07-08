@@ -40,9 +40,9 @@ class InGame extends AppWindow {
       });
     });
 
-    this.team.addEventListener('click', function(){
-      overwolf.windows.obtainDeclaredWindow('TemTemSelector', function(result:overwolf.windows.WindowResult){
-          //overwolf.windows.restore(result.window.name);
+    this.freetem.addEventListener('click', function(){
+      overwolf.windows.obtainDeclaredWindow('freeTem', function(result:overwolf.windows.WindowResult){
+          overwolf.windows.restore(result.window.name);
       });
     });
 

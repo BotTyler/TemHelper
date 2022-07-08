@@ -73,7 +73,7 @@
         "restrict_to_game_bounds":true,
         "size": {
           "width": 520,
-          "height": 0
+          "height": 50
         }
       },
       "catchRate":{
@@ -111,7 +111,12 @@
         "disable_rightclick":true,
         "in_game_only":true,
         "restrict_to_game_bounds":true,
-        "is_alt_f4_blocked":true
+        "is_alt_f4_blocked":true,
+        "start_position": {"Top": 50, "Left": 50},
+        "size": {
+          "width": 405,
+          "height": 185
+        }
         
       },
       "teamCreator":{
@@ -138,7 +143,7 @@
         "is_alt_f4_blocked":true,
         "size": {
           "width": 700,
-          "height": 500
+          "height": 530
         }
         
       }
