@@ -13,7 +13,7 @@ export const kWindowNames = {
   inGame: 'in_game',
   desktop: 'desktop',
   damageCalculator: 'damageCalculator',
-  catchRate: 'catchRate',
+  breedingCalc: 'breedingCalc',
   freeTem: 'freeTem',
   teamCreator: 'teamCreator',
   TemTemSelector: 'TemTemSelector'

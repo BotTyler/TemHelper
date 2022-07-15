@@ -11,7 +11,7 @@ module.exports = env => ({
         desktop: './src/desktop/desktop.ts',
         in_game: './src/in_game/in_game.ts',
         damageCalculator: './src/in_game/damageCalculator.ts',
-        catchRate: './src/in_game/catchRate.ts',
+        breedingCalc: './src/in_game/breedingCalc.ts',
         freeTem: './src/in_game/freeTem.ts',
         teamCreator: './src/in_game/teamCreator.ts',
         TemTemSelector: './src/in_game/TemTemSelector.ts',
@@ -65,8 +65,8 @@ module.exports = env => ({
             chunks: ['freeTem']
         }),
         new HtmlWebpackPlugin({
-            template: './src/in_game/catchRate.html',
-            filename: path.resolve(__dirname, './dist/catchRate.html'),
+            template: './src/in_game/breedingCalc.html',
+            filename: path.resolve(__dirname, './dist/breedingCalc.html'),
             chunks: ['catchRate']
         }),
         new HtmlWebpackPlugin({

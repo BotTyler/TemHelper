@@ -22,14 +22,14 @@ class InGame extends AppWindow {
   private dmgCalc: HTMLElement;
   private team: HTMLElement;
   private freetem: HTMLElement;
-  private catchrate: HTMLElement;
+  private breedingCalc: HTMLElement;
 
   private constructor() {
     super(kWindowNames.inGame);
     this.dmgCalc = document.getElementById('dmgcalc');
     this.team = document.getElementById('team');
     this.freetem = document.getElementById('freetem');
-    this.catchrate = document.getElementById('catchrate');
+    this.breedingCalc = document.getElementById('breedingCalc');
 
     
 
@@ -62,17 +62,6 @@ class InGame extends AppWindow {
     const gameClassId = await this.getCurrentGameClassId();
     const gameFeatures = kGamesFeatures.get(gameClassId);
 
-    //console.log('game features: ' + gameFeatures);
-/*
-    overwolf.windows.onMessageReceived.addListener(function(message){
-      console.log("MSG RECIEVED: " + message.id);
-      if(message.id ===  '1'){
-        //this.listTem = message.content;
-        //console.log('Message received', message.content);
-        console.log(message.content);
-      }
-    });
-*/
   }
 
   private async getCurrentGameClassId(): Promise<number | null> {

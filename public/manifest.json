@@ -76,8 +76,8 @@
           "height": 50
         }
       },
-      "catchRate":{
-        "file":"catchRate.html",
+      "breedingCalc":{
+        "file":"breedingCalc.html",
         "transparent": true,
         "resizable":true,
         "show_in_taskbar":false,

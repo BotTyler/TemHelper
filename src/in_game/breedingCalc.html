@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>BreedingCalc</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel='stylesheet' type='text/css' media='screen' href='main.css'>
+    <link rel="stylesheet" href="/public/css/general.css" />
+    <link rel="stylesheet" href="/public/css/header.css" />
+    <link rel="stylesheet" href="/public/css/modal.css" />
+    <link rel="stylesheet" href="/public/css/breedingCalc.css" />
+
+</head>
+<body class="breedingCalcWindowSize background">
+    <div class="bodyDiv">
+        <header id="header" class="app-header">
+            <button id="closeButton" class="window-control window-control-close" ></button>
+        </header>
+        <div class="centerContent">
+            <div class="temBorder">
+                <div class="roundBtnDiv">
+                    <img src="/public/temtypes/Plus.png" id="temBreed1" class="round"/>
+                </div>
+                <div class="statRow">
+                    <label class="rowLabel">HP:</label>
+                    <div class="slidecontainer">
+                        <input type="range" min="1" max="50" value="25" class="slider" id="tem1hp">
+                    </div>
+                    <label class="value" id="hpVal1">25</label>
+                </div>
+                <div class="statRow">
+                    <label class="rowLabel">STA:</label>
+                    <div class="slidecontainer">
+                        <input type="range" min="1" max="50" value="25" class="slider" id="tem1sta">
+                    </div>
+                    <label class="value" id="staval1">25</label>
+    
+                </div>
+                <div class="statRow">
+                    <label class="rowLabel">SPD:</label>
+                    <div class="slidecontainer">
+                        <input type="range" min="1" max="50" value="25" class="slider" id="tem1spd">
+                    </div>
+                    <label class="value" id="spdval1">25</label>
+    
+                </div>
+                <div class="statRow">
+                    <label class="rowLabel">ATK:</label>
+                    <div class="slidecontainer">
+                        <input type="range" min="1" max="50" value="25" class="slider" id="tem1atk">
+                    </div>
+                    <label class="value" id="atkval1">25</label>
+    
+                </div>
+                <div class="statRow">
+                    <label class="rowLabel">SPATK:</label>
+                    <div class="slidecontainer">
+                        <input type="range" min="1" max="50" value="25" class="slider" id="tem1spatk">
+                    </div>
+                    <label class="value" id="spatkval1">25</label>
+    
+                </div>
+                <div class="statRow">
+                    <label class="rowLabel">DEF:</label>
+                    <div class="slidecontainer">
+                        <input type="range" min="1" max="50" value="25" class="slider" id="tem1def">
+                    </div>
+                    <label class="value" id="defval1">25</label>
+    
+                </div>
+                <div class="statRow">
+                    <label class="rowLabel">SPDEF:</label>
+                    <div class="slidecontainer">
+                        <input type="range" min="1" max="50" value="25" class="slider" id="tem1spdef">
+                    </div>
+                    <label class="value" id="spdefval1">25</label>
+    
+                </div>
+            </div>
+            <label>+</label>
+            <div class="temBorder">
+                <div class="roundBtnDiv">
+                    <img src="/public/temtypes/Plus.png" id="temBreed2" class="round"/>
+                </div>
+                <div class="statRow">
+                    <label class="rowLabel">HP:</label>
+                    <div class="slidecontainer">
+                        <input type="range" min="1" max="50" value="25" class="slider" id="tem2hp">
+                    </div>
+                    <label class="value" id="hpVal2">25</label>
+                </div>
+                <div class="statRow">
+                    <label class="rowLabel">STA:</label>
+                    <div class="slidecontainer">
+                        <input type="range" min="1" max="50" value="25" class="slider" id="tem2sta">
+                    </div>
+                    <label class="value" id="staval2">25</label>
+    
+                </div>
+                <div class="statRow">
+                    <label class="rowLabel">SPD:</label>
+                    <div class="slidecontainer">
+                        <input type="range" min="1" max="50" value="25" class="slider" id="tem2spd">
+                    </div>
+                    <label class="value" id="spdval2">25</label>
+    
+                </div>
+                <div class="statRow">
+                    <label class="rowLabel">ATK:</label>
+                    <div class="slidecontainer">
+                        <input type="range" min="1" max="50" value="25" class="slider" id="tem2atk">
+                    </div>
+                    <label class="value" id="atkval2">25</label>
+    
+                </div>
+                <div class="statRow">
+                    <label class="rowLabel">SPATK:</label>
+                    <div class="slidecontainer">
+                        <input type="range" min="1" max="50" value="25" class="slider" id="tem2spatk">
+                    </div>
+                    <label class="value" id="spatkval2">25</label>
+    
+                </div>
+                <div class="statRow">
+                    <label class="rowLabel">DEF:</label>
+                    <div class="slidecontainer">
+                        <input type="range" min="1" max="50" value="25" class="slider" id="tem2def">
+                    </div>
+                    <label class="value" id="defval2">25</label>
+    
+                </div>
+                <div class="statRow">
+                    <label class="rowLabel">SPDEF:</label>
+                    <div class="slidecontainer">
+                        <input type="range" min="1" max="50" value="25" class="slider" id="tem2spdef">
+                    </div>
+                    <label class="value" id="spdefval2">25</label>
+    
+                </div>
+            </div>
+            <label>=</label>
+            <div class="temBorder">
+                <div class="roundBtnDiv">
+                    <img src="/public/temtypes/Plus.png" id="temBreed3" class="round"/>
+                </div>
+                <div class="finalRows">
+                    <label id="minhp">0</label>
+                    <label>/</label>
+                    <label id="avghp">25</label>
+                    <label>/</label>
+                    <label id="maxhp">50</label>
+                </div>
+                <div class="finalRows">
+                    <label id="minsta">0</label>
+                    <label>/</label>
+                    <label id="avgsta">25</label>
+                    <label>/</label>
+                    <label id="maxsta">50</label>
+    
+                </div>
+                <div class="finalRows">
+                    <label id="minspd">0</label>
+                    <label>/</label>
+                    <label id="avgspd">25</label>
+                    <label>/</label>
+                    <label id="maxspd">50</label>
+    
+                </div>
+                <div class="finalRows">
+                    <label id="minatk">0</label>
+                    <label>/</label>
+                    <label id="avgatk">25</label>
+                    <label>/</label>
+                    <label id="maxatk">50</label>
+    
+                </div>
+                <div class="finalRows">
+                    <label id="minspatk">0</label>
+                    <label>/</label>
+                    <label id="avgspatk">25</label>
+                    <label>/</label>
+                    <label id="maxspatk">50</label>
+    
+                </div>
+                <div class="finalRows">
+                    <label id="mindef">0</label>
+                    <label>/</label>
+                    <label id="avgdef">25</label>
+                    <label>/</label>
+                    <label id="maxdef">50</label>
+    
+                </div>
+                <div class="finalRows">
+                    <label id="minspdef">0</label>
+                    <label>/</label>
+                    <label id="avgspdef">25</label>
+                    <label>/</label>
+                    <label id="maxspdef">50</label>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+</body>
+</html>
