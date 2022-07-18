@@ -46,6 +46,12 @@ class InGame extends AppWindow {
       });
     });
 
+    this.breedingCalc.addEventListener('click', function(){
+        overwolf.windows.obtainDeclaredWindow('breedingCalc', function(result:overwolf.windows.WindowResult){
+          overwolf.windows.restore(result.window.name);
+      });
+    });
+
 
     
   }

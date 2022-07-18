@@ -24,7 +24,6 @@
     background: transparent;
   }
   .temBorder{
-    color: red;
     width: 30%;
     height: 100%;
     border: 1px solid white;
@@ -73,18 +72,17 @@
     margin-top: 15px;
     align-items: center;
     align-content: center;
-
+    height: 16px;
   }
 
   .finalRows{
     display: flex;
     margin-top: 13px;
-
+    height: 18px;
 
     justify-content: center;
   }
   .finalRows label{
-    color: red;
     margin-left: 5px;
     margin-right: 5px;
   }
@@ -131,3 +129,41 @@
   cursor: pointer;
 }
 
+.symbolLabel{
+  font-size: 60px;
+}
+
+.green{
+  color: green;
+}
+
+.red{
+  color: red;
+}
+
+.yellow{
+  color: yellow;
+}
+
+.perfect{
+  color: purple;
+}
+
+/* Flex Box */
+.box {
+  display: flex;
+  flex-flow: column;
+  height: 100%;
+}
+.box .row {
+  border: 1px dotted #0313fc;
+}
+.box .rh {
+  flex: 0 1 auto;
+}
+.box .rc {
+  flex: 1 1 auto;
+}
+.box .row.footer {
+  flex: 0 1 40px;
+}
