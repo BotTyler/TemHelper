@@ -6,6 +6,10 @@ import { TemData, temListInterface } from "../TemData";
   
   class breedingCalc extends AppWindow {
 
+    private static temBreed1:HTMLElement;
+    private static temBreed2:HTMLElement;
+    private static temBreed3:HTMLElement;
+
     private static tem1hp:HTMLInputElement;
     private static tem1sta:HTMLInputElement;
     private static tem1spd:HTMLInputElement;
@@ -81,7 +85,7 @@ import { TemData, temListInterface } from "../TemData";
     }
     
     private avg(x:number, y:number):number{
-        return (x+y)/2;
+        return Math.trunc((x+y)/2);
     }
 
     private getColor(val:number){
@@ -97,6 +101,48 @@ import { TemData, temListInterface } from "../TemData";
     }
     private constructor() {
         super(kWindowNames.breedingCalc);
+
+
+        breedingCalc.temBreed1 = document.getElementById('temBreed1');
+        breedingCalc.temBreed2 = document.getElementById('temBreed2');
+        breedingCalc.temBreed3 = document.getElementById('temBreed3');
+
+        breedingCalc.temBreed1.addEventListener('click', () => {
+            overwolf.windows.obtainDeclaredWindow('TemTemSelector', function(result:overwolf.windows.WindowResult){
+              overwolf.windows.restore(result.window.name);
+            });
+    
+            overwolf.windows.sendMessage(kWindowNames.breedingCalc, kWindowNames.breedingCalc, '1', ()=>{console.log('Msg Has been sent to TemTemSeelctor waiting for resposne.')}); // send msg to the temtemselector page need to move to where one of the portait pictures are clicked
+    
+        });
+
+        breedingCalc.temBreed2.addEventListener('click', () => {
+            overwolf.windows.obtainDeclaredWindow('TemTemSelector', function(result:overwolf.windows.WindowResult){
+              overwolf.windows.restore(result.window.name);
+            });
+    
+            overwolf.windows.sendMessage(kWindowNames.breedingCalc, kWindowNames.breedingCalc, '1', ()=>{console.log('Msg Has been sent to TemTemSeelctor waiting for resposne.')}); // send msg to the temtemselector page need to move to where one of the portait pictures are clicked
+    
+        });
+
+
+        
+      overwolf.windows.onMessageReceived.addListener(function(message){
+        //console.log("MSG RECIEVED: " + message.id);
+        const msgContents:temListInterface = message.content;
+        if(+message.id === 1){
+            // female temtem
+            breedingCalc.temBreed1.setAttribute('src', msgContents.portraitWikiUrl);
+            breedingCalc.temBreed3.setAttribute('src', msgContents.portraitWikiUrl);
+        }else if(+message.id === 2){
+            breedingCalc.temBreed2.setAttribute('src', msgContents.portraitWikiUrl);
+        }
+
+        //damageCalculator.setTableRow(message.content, +message.id, fields);
+
+      });
+
+
 
         breedingCalc.tem1hp = document.getElementById('tem1hp') as HTMLInputElement;
         breedingCalc.tem1sta = document.getElementById('tem1sta') as HTMLInputElement;

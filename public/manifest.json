@@ -56,10 +56,6 @@
         "size": {
           "width": 1212,
           "height": 699
-        },
-        "min_size": {
-          "width": 1212,
-          "height": 699
         }
       },
       "in_game": {
@@ -85,7 +81,11 @@
         "disable_rightclick":true,
         "in_game_only":true,
         "restrict_to_game_bounds":true,
-        "is_alt_f4_blocked":true
+        "is_alt_f4_blocked":true,
+        "size": {
+          "width": 602,
+          "height": 312
+        }
       },
       "damageCalculator":{
         "file":"damageCalculator.html",
@@ -98,8 +98,8 @@
         "restrict_to_game_bounds":true,
         "is_alt_f4_blocked":true,
         "size": {
-          "width": 405,
-          "height": 185
+          "width": 395,
+          "height": 177
         }
       },
       "freeTem":{
@@ -114,8 +114,8 @@
         "is_alt_f4_blocked":true,
         "start_position": {"Top": 50, "Left": 50},
         "size": {
-          "width": 405,
-          "height": 185
+          "width": 392,
+          "height": 180
         }
         
       },

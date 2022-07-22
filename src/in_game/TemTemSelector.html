@@ -13,32 +13,33 @@
     <link rel="stylesheet" href="../../css/ingame.css" />
     <link rel="stylesheet" href="../../css/modal.css" />
     <link rel="stylesheet" href="../../css/overlayImages.css" />
-    <link rel="stylesheet" href="../../css/overlayImages.css" />
     <link rel="stylesheet" href="../../css/selector.css" />
+    <link rel="stylesheet" href="../../css/window.css" />
 
-
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeahead-standalone/dist/basic.css" />
     <script src="https://cdn.jsdelivr.net/npm/typeahead-standalone"></script>
     
 </head>
-<body class="fitContent background">
-    <header id="header" class="app-header width100">
-        <div class="window-controls-group">
-          <button id="minButton" class="window-control window-control-close" ></button>
+<body class="fitContent">
+    <div class="background">
+        <header id="header" class="app-header width100">
+            <div class="window-controls-group">
+              <button id="minButton" class="window-control window-control-close" ></button>
+            </div>
+        </header>
+        <div class="center">
+            <input type="search" id="search" autocomplete="off" placeholder="Search..">
+    
         </div>
-    </header>
-    <div class="center">
-        <input type="search" id="search" autocomplete="off" placeholder="Search..">
-
+    
+        <div class="contents">
+    
+            <!--Start of the list of temtem-->
+            <div id="listoftem" >
+            </div>
+    
+    
+        </div>
     </div>
 
-    <div class="contents">
-
-        <!--Start of the list of temtem-->
-        <div id="listoftem" >
-        </div>
-
-
-    </div>
 </body>
 </html>

@@ -1,0 +1,45 @@
+.overflowhidden{
+    overflow: hidden;
+  }
+
+  .hover{
+    opacity: .5;
+  }
+  
+  .hover:hover{opacity: 1;}
+  .bodyDiv{
+    
+    width: 100%;
+    height: 100%;
+  }
+
+  .background{
+    background: #02001f;
+    border: 1px solid lightblue;
+  }
+  .transparent{
+    background: transparent;
+  }
+  body{
+    background: transparent !important;
+    margin: 0px;
+  }
+
+  /* Flex Box */
+.box {
+  display: flex;
+  flex-flow: column;
+  height: 100%;
+}
+.box .row {
+  border: 1px dotted #0313fc;
+}
+.box .rh {
+  flex: 0 1 auto;
+}
+.box .rc {
+  flex: 1 1 auto;
+}
+.box .row.footer {
+  flex: 0 1 40px;
+}

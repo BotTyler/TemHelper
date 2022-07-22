@@ -67,7 +67,7 @@ module.exports = env => ({
         new HtmlWebpackPlugin({
             template: './src/in_game/breedingCalc.html',
             filename: path.resolve(__dirname, './dist/breedingCalc.html'),
-            chunks: ['catchRate']
+            chunks: ['breedingCalc']
         }),
         new HtmlWebpackPlugin({
             template: './src/in_game/teamCreator.html',
