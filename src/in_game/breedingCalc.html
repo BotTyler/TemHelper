@@ -6,15 +6,16 @@
     <title>BreedingCalc</title>
     <meta name='viewport' content='width=device-width, initial-scale=1'>
     <link rel='stylesheet' type='text/css' media='screen' href='main.css'>
-    <link rel="stylesheet" href="../../css/general.css" />
-    <link rel="stylesheet" href="../../css/header.css" />
-    <link rel="stylesheet" href="../../css/modal.css" />
-    <link rel="stylesheet" href="../../css/breedingCalc.css" />
-    <link rel="stylesheet" href="../../css/window.css" />
+    <link rel="stylesheet" href="/public/css/general.css" />
+    <link rel="stylesheet" href="/public/css/header.css" />
+    <link rel="stylesheet" href="/public/css/modal.css" />
+    <link rel="stylesheet" href="/public/css/breedingCalc.css" />
+    <link rel="stylesheet" href="/public/css/window.css" />
 
 
 </head>
-<body class="breedingCalcWindowSize hover">
+
+<body class="breedingCalcWindowSize">
     <div class="bodyDiv box background">
         <header id="header" class="app-header rh">
             <button id="closeButton" class="window-control window-control-close" ></button>
@@ -22,7 +23,7 @@
         <div class="centerContent rc">
             <div class="temBorder">
                 <div class="roundBtnDiv">
-                    <img src="../../temtypes/Plus.png" id="temBreed1" class="round"/>
+                    <img src="/public/temtypes/Plus.png" id="temBreed1" class="round"/>
                 </div>
                 <div class="statRow">
                     <label class="rowLabel">HP:</label>
@@ -83,7 +84,7 @@
             <label class="symbolLabel">+</label>
             <div class="temBorder">
                 <div class="roundBtnDiv">
-                    <img src="../../temtypes/Plus.png" id="temBreed2" class="round"/>
+                    <img src="/public/temtypes/Plus.png" id="temBreed2" class="round"/>
                 </div>
                 <div class="statRow">
                     <label class="rowLabel">HP:</label>
@@ -144,7 +145,7 @@
             <label class="symbolLabel">=</label>
             <div class="temBorder">
                 <div class="roundBtnDiv">
-                    <img src="../../temtypes/Plus.png" id="temBreed3" class="round"/>
+                    <img src="/public/temtypes/Plus.png" id="temBreed3" class="round"/>
                 </div>
                 <div class="finalRows">
                     <label id="minhp">0</label>
@@ -202,6 +203,32 @@
                 </div>
             </div>
         </div>
+        <footer class="rf">
+            <div class="footerDiv">
+                <label class="footerLabel">Egg Moves:</label>
+
+                <div class="imoves" id="eggmoves">
+                    <div class="temInheritMove">
+                        <div class="hold"></div>
+                        <div class="ehold"></div>
+                        <div class="ehold"></div>
+                        <div class="ehold"></div>
+                        <div class="ehold"></div>
+                    </div>
+                    <div class="temInheritMove">
+                        <div class="hold"></div>
+                        <div class="ehold"></div>
+                        <div class="ehold"></div>
+                    </div>
+                    <div class="temInheritMove">
+                        <div class="hold"></div>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </footer>
     </div>
     
 </body>

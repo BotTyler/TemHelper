@@ -40,6 +40,6 @@
 .box .rc {
   flex: 1 1 auto;
 }
-.box .row.footer {
+.box .rf {
   flex: 0 1 40px;
 }

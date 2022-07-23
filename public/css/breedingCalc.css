@@ -1,8 +1,70 @@
 .breedingCalcWindowSize{
     width: 600px;
-    height: 310px;
+
+    /*height: 340px;*/
+    height: fit-content;
     overflow: hidden;
   }
+
+
+
+  /*temtypes colors*/
+  .neutralcolor{
+    color: #e6f7f7;
+  }
+
+  .firecolor{
+    color: #e85c4e;
+  }
+
+  .watercolor{
+    color: #45cbff;
+  }
+
+  .naturecolor{
+    color: #adde77;
+  }
+
+  .electriccolor{
+    color: #ffe174;
+  }
+
+  .earthcolor{
+    color: #ba7a5c;
+
+  }
+
+  .mentalcolor{
+    color: #c36993;
+
+  }
+
+  .windcolor{
+    color: #08fab3;
+
+  }
+
+  .digitalcolor{
+    color: #94c0c1;
+
+  }
+
+  .meleecolor{
+    color: #fa9260;
+
+  }
+
+  .crystalcolor{
+    color: #ea4a68;
+
+  }
+
+  .toxiccolor{
+    color: #5c565c;
+
+  }
+  /*end of temtypes colors*/
+
  
   .temBorder{
     width: 30%;
@@ -131,3 +193,65 @@
   color: purple;
 }
 
+
+
+
+footer{
+  opacity: 1;
+}
+
+.footerLabel{
+  font-size: medium;
+  font-style: italic;
+  font-weight: bold;
+  width: 100%;
+}
+
+.footerDiv{
+  display: block;
+  text-align: center;
+  margin-top: 20px;
+  margin-bottom: 10px;
+  border: 1px solid red;
+}
+
+.imoves{
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.hold{
+  width: 45px;
+  height: 100%;
+  background: white;
+  transform: skew(340deg);
+  position: relative;
+  left: -20px;
+
+}
+.ehold{
+  width: 15px;
+  height: 100%;
+  background: blue;
+  transform: skew(340deg);
+  position: relative;
+  left: -18px;
+  margin-left: 6px;
+}
+
+.temInheritMove{
+  display: flex;
+  overflow: hidden;
+  float: left;
+  margin: 5px 9px 5px 10px;
+  border-radius: 0px 10px 10px 0px;
+
+  width: 30%;
+  height: 40px;
+
+  
+  background-color: red;
+
+  margin-bottom: 5px;
+
+}
