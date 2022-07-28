@@ -22,7 +22,6 @@ class BackgroundController {
   private _gameListener: OWGameListener;
   public temData:TemData;
   private constructor() {
-    this.temData = new TemData();
     // Populating the background controller's window dictionary
     this._windows[kWindowNames.desktop] = new OWWindow(kWindowNames.desktop);
     this._windows[kWindowNames.inGame] = new OWWindow(kWindowNames.inGame);
@@ -55,12 +54,10 @@ class BackgroundController {
     const currWindowName = (await this.isSupportedGameRunning())
       ? kWindowNames.inGame
       : kWindowNames.desktop;
-    while(this.temData.temList === undefined || this.temData.dmgTable === undefined || this.temData.temListErr != 1 || this.temData.tableErr != 1){
-      //stall the program until the webrequest comes back
-    }
-    console.log('Sorting');
+    this.temData = new TemData();
 
-    this.temData.sortList();
+
+
     //this.temData.cLogTemTemData(this.temData.temList);
     window.temData = this.temData;
     /*
@@ -79,12 +76,8 @@ class BackgroundController {
 
     }
     */
-    overwolf.windows.obtainDeclaredWindow(kWindowNames.TemTemSelector, function(result:overwolf.windows.WindowResult){
-      overwolf.windows.hide(result.window.name);
-      //console.log('asdf');
-  });
+   
 
-    console.log("switching screens");
     this._windows[currWindowName].restore();
 
 

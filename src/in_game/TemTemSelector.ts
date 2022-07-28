@@ -16,10 +16,11 @@
 
     private constructor() {
       super(kWindowNames.TemTemSelector);
-      const {temData}= overwolf.windows.getMainWindow();
+      const {temData} = overwolf.windows.getMainWindow();
       this.listTem = temData;
+      console.log();
       this.populatePage();
-
+      
       overwolf.windows.onMessageReceived.addListener(function(message){
         if(message.id ===  kWindowNames.damageCalculator || message.id == kWindowNames.freeTem){
           TemTemSelector.windowName = message.id;
@@ -49,8 +50,8 @@
 
     private async populatePage(){
       this.temtable = document.getElementById('listoftem');
-      
-      this.listTem.temList.forEach(element => {
+      const tems = this.listTem.getTemList();
+      tems.forEach(element => {
         let temDiv:HTMLElement = document.createElement('div');
 
         let temPicDiv:HTMLElement = document.createElement('div');

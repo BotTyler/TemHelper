@@ -16,7 +16,8 @@
   },
   "permissions": [
     "Hotkeys",
-    "GameInfo"
+    "GameInfo",
+    "Web"
   ],
   "data": {
     "start_window": "background",
@@ -28,7 +29,7 @@
       }
     },
     "protocol_override_domains": {
-      "googlesyndication": "http"
+      "googlesyndication": "http","ajax.googleapis.com": "https", "domain.com": "http"
     },
     "externally_connectable": {
       "matches": [
@@ -36,7 +37,8 @@
         "https://*.overwolf.com",
         "https://*.google-analytics.com",
         "http://*.google-analytics.com",
-        "https://www.googleapis.com"
+        "https://www.googleapis.com",
+        "https://temtem-api.mael.tech"
       ]
     },
     "force_browser": "user",
@@ -84,7 +86,8 @@
         "is_alt_f4_blocked":true,
         "size": {
           "width": 602,
-          "height": 312
+          "height":500
+          
         }
       },
       "damageCalculator":{

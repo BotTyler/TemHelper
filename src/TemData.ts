@@ -1,102 +1,83 @@
-import axios from 'axios';
+import {ajax} from 'rxjs/ajax';
+import { forkJoin } from 'rxjs';
 
 export class TemData {
   static temtem: temListInterface;
-  forEach(arg0: (element: any) => void) {
-    throw new Error("Method not implemented.");
-  }
-    public temList:temListInterface[];
-    public dmgTable:object;
+
+    private static temList:temListInterface[];
+    private static dmgTable:object;
+    private static techniques:eggMoveInterface[];
+    private static dataCollected:boolean = false;
+    //public static fetchErr:number = 0;
+    
+    //public static temp:number = 0;
+    /*
     public temListErr:number = 0;
     public tableErr:number = 0;
+    public techniqueErr:number = 0;
+    */
+
+
+
+
+
+
+
+
+
+
   constructor() {
 
-    if(this.temList === undefined || this.temListErr != 1 || this.dmgTable === undefined || this.tableErr != 1){
-        this.temList = undefined;
-        this.dmgTable = undefined;
-        this.temListErr = 0;
-        this.tableErr = 0;
-
-        this.collectData();
-        //console.log("Done");
-        this.getTable();
+    if(TemData.temList === undefined || TemData.dmgTable === undefined || TemData.techniques === undefined){
+      TemData.temList = undefined;
+      TemData.dmgTable = undefined; 
+      TemData.techniques = undefined;
+      this.startCollecting();
     }
+
+
   }
-  public static logTem(x:temListInterface){
-      console.log("Number: " + x.number +"\tname: " + x.name +"\ttypes: " + x.types+"\ttraits: " + x.traits+"\ticon: " + x.portraitWikiUrl);
+
+  public startCollecting(){
+
+    const temtemUrl = "https://temtem-api.mael.tech/api/temtems";
+    const tableUrl = "https://temtem-api.mael.tech/api/weaknesses";
+    const techniqueUrl = "https://temtem-api.mael.tech/api/techniques";
+
+ 
     
+    forkJoin(
+      {        
 
-  }
+        temLists: ajax.getJSON<temListInterface[]>(temtemUrl),
+        tableList: ajax.getJSON<object>(tableUrl),
+        techniqueList: ajax.getJSON<eggMoveInterface[]>(techniqueUrl)
 
-  public static logTemBasicData(x:temListInterface[]){
-    x.forEach(element => {
-      console.log("Number: " + element.number +"\tname: " + element.name +"\ttypes: " + element.types+"\ttraits: " + element.traits+"\ticon: " + element.portraitWikiUrl + "\tcatchRate: " + element.catchRate);
+      }
+    ).subscribe(function(val){
+      console.log('asdfasdfasdf1:'+val.temLists + '\n2:'+ val.techniqueList + '\n3:' + val.tableList);
+      
+      TemData.temList = val.temLists;
+      TemData.techniques = val.techniqueList;
+      TemData.dmgTable = val.tableList;
+      TemData.sortList();
+      TemData.dataCollected = true;
     });
 
   }
 
-  public static logTemLocation(x:temListInterface){
-    console.log('pringing');
-    x.locations.forEach((element, index) => {
-      console.log('Location ' + (index+1) + '\tLocation: ' + element.location + '\tisland: ' + element.island + '\tfrequency: ' + element.frequency + '\tlevel: ' + element.level + '\n\t\t*********FreeTem**********\n\t\t' + 'minLevel: ' + element.freetem.minLevel + '\tmaxLevel: ' + element.freetem.maxLevel + '\tminPansuns: ' + element.freetem.minPansuns + '\tmaxPansuns: ' + element.freetem.maxPansuns);
-    });
-  }
-  
-  private formUrl(fields:string[]){
-    var result = 'https://temtem-api.mael.tech/api/temtems?fields=';
-    
-    fields.forEach(element => {
-      fields.push()
-      result += element + ",";
-    });
-    result = result.substring(0,result.length-1);
-    //console.log('https://temtem-api.mael.tech/api/temtems?fields=number,name,types,traits,icon,lumaIcon,portraitWikiUrl' === result);
-    //console.log('result: ' + result);
-    return result;
-  }
-  public async getTable(){
-    let dmgUrl = "https://temtem-api.mael.tech/api/weaknesses";
-
-    try{
-
-      console.log("\n\n\n\nSTARTING SECOND DATA COLLECTION")
-      const res = await axios.get(dmgUrl,{});
-      this.dmgTable = JSON.parse(JSON.stringify(res.data));
-      this.tableErr = 1; // change this to sephamores
-    }catch(expection){
-      console.log('Something has failed in the data collection');
-      this.tableErr = -1;
-    }
-  }
+ 
 
 
 
-  public async collectData(){
-    let fields = ['number', 'name', 'types', 'traits' , 'portraitWikiUrl', 'locations', 'catchRate', 'stats'];
-    let url = this.formUrl(fields);
 
-    try{
-      const {data, status} = await axios.get<temListInterface[]>(url,{});
-      this.temList = data;
-      this.temListErr = 1; // change this to sephamores
-    }catch(expection){
-      console.log('Something has failed in the data collection');
-      this.temListErr = -1;
-    }
-
-
-    //console.log(this.temList);
-  }
-
-
-
-  private swap(arr:temListInterface[], i:number, j:number){
+  private static swap(arr:temListInterface[], i:number, j:number){
     let temp:temListInterface = arr[i];
     arr[i] = arr[j];
     arr[j] = temp;
   }
 
-  private partition(arr:temListInterface[], low:number, high:number):number{
+  private static partition(arr:temListInterface[], low:number, high:number):number{
 
     let pivot = arr[high];
 
@@ -113,7 +94,7 @@ export class TemData {
   }
 
 
-  private quickSort(arr:temListInterface[], low:number, high:number){
+  private static quickSort(arr:temListInterface[], low:number, high:number){
     if(low < high){
       let pi:number = this.partition(arr, low, high);
       this.quickSort(arr, low, pi-1);
@@ -121,12 +102,144 @@ export class TemData {
     }
   }
 
-  public sortList(){
-    this.quickSort(this.temList, 0, this.temList.length-1);
+
+  
+  private static techswap(arr:eggMoveInterface[], i:number, j:number){
+    let temp:eggMoveInterface = arr[i];
+    arr[i] = arr[j];
+    arr[j] = temp;
+  }
+
+  private static techpartition(arr:eggMoveInterface[], low:number, high:number):number{
+
+    let pivot = arr[high];
+
+    let i:number = low-1;
+
+    for(let j:number = low; j <= high-1; j++){
+      if(arr[j].name < pivot.name){
+        i++
+        this.techswap(arr,i,j);
+      }
+    }
+    this.techswap(arr,i+1, high);
+    return i+1;
+  }
+
+
+  private static techquickSort(arr:eggMoveInterface[], low:number, high:number){
+    if(low < high){
+      let pi:number = this.techpartition(arr, low, high);
+      this.techquickSort(arr, low, pi-1);
+      this.techquickSort(arr,pi+1,high);
+    }
+  }
+
+
+  private static extractBreedingMoves(arr:temListInterface[]){
+    console.log('first');
+    arr.forEach(element => {
+      var breedingMoves:techniqueInterface[] = new Array();
+      console.log('first2: ' + element.name + ' ' + element.number + ' : ' + element.techniques);
+      element.techniques.forEach(ele => {
+        if(ele.source === 'Breeding'){
+          console.log('adding eggmove at index: ' + breedingMoves.length);
+          breedingMoves[breedingMoves.length] = ele;
+        }
+      });
+      element.breedingMoves = breedingMoves;
+    });
+
+  }
+
+
+  public static sortList(){
+    this.quickSort(TemData.temList, 0, TemData.temList.length-1);
     //this.cLogTemTemData(this.temList);
+    this.extractBreedingMoves(TemData.temList);
+    this.techquickSort(TemData.techniques, 0, TemData.techniques.length-1);
+  }
+
+
+
+
+
+  // gets the eggmoves of a certain breeding (maybe i can make it more efficient by making base cases in the matching)
+  public getEggMoves(male:temListInterface, female:temListInterface):eggMoveInterface[]{
+    var eggMoves:eggMoveInterface[] = new Array();
+    male.techniques.forEach(maleMove => {
+      female.breedingMoves.forEach(femaleMove => {
+        if(femaleMove.name === maleMove.name){
+          // potential egg move
+          eggMoves[eggMoves.length] = this.lookupeggmove(femaleMove.name);
+        }
+
+      });
+    });
+
+    return eggMoves;
+
+  }
+
+
+  // will return the technique that is being searched for
+  private lookupeggmove(name:string):eggMoveInterface{
+    let bottom:number = 0;
+    let top:number = TemData.techniques.length-1;
+
+    while(bottom===top){
+      let mid:number = (bottom+top)/2;
+      let val = TemData.techniques[mid];
+      if(val.name === name){
+        return val;
+      }else if(val.name > name){
+        top = mid - 1;
+      }else{
+        bottom = mid + 1;
+      }
+    }
+    return null;
+  }
+
+
+  public getTemList():temListInterface[]{
+    return TemData.temList;
+  }
+
+  public getDmgTable():Object{
+    return TemData.dmgTable;
+  }
+  public getTechniqueList(){
+    return TemData.techniques;
+  }
+
+  public isDataAvailable(){
+    return TemData.dataCollected;
   }
 
 }
+
+export interface eggMoveInterface{
+  name:string;
+  type:string;
+  class:string;
+  damage:number;
+  staminaCost:number;
+  hold:number;
+  priority:string;
+  synergy:string; // this value can contain the value none which is the same as null
+  synergyEffects:synergyInterface[];
+  effectText:string;
+
+}
+
+export interface synergyInterface{
+  damage:number;
+  type:string;
+  effect:string;
+}
+
+
 export interface temListInterface{
   number:number;
   name:string;
@@ -136,7 +249,9 @@ export interface temListInterface{
   locations:locationInterface[];
   catchRate:number;
   stats:statsInterface;
+  techniques:techniqueInterface[];
   //minPansuns:number; needs to take care of the location json obj
+  breedingMoves:techniqueInterface[];
   
 }
 export interface statsInterface{
@@ -165,3 +280,8 @@ export interface freeTemInterface{
   maxPansuns:number;
 }
 
+export interface techniqueInterface{
+  name:string;
+  source:string;
+  levels:number;
+}

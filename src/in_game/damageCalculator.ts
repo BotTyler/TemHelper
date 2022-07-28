@@ -57,7 +57,6 @@
 
       overwolf.windows.onMessageReceived.addListener(function(message){
         //console.log("MSG RECIEVED: " + message.id);
-        TemData.logTemLocation(message.content);
         damageCalculator.setTableRow(message.content, +message.id, fields);
 
       });
@@ -65,7 +64,7 @@
     }
 
     public static setTableRow(data:temListInterface, location:number, fields:string[]){
-
+      const dmgtable = this.listTem.getDmgTable();
       if(location===1){
         this.temBtn1.setAttribute('src', data.portraitWikiUrl);
 
@@ -74,8 +73,8 @@
           var total:number = 1;
           data.types.forEach(type=>{
 
-            total *= damageCalculator.listTem.dmgTable[element][type];
-
+            //total *= damageCalculator.listTem.dmgTable[element][type];
+            total *= dmgtable[element][type];
           });
           damageCalculator.table1[element].innerHTML = total + '';
         });
@@ -89,7 +88,8 @@
           var total:number = 1;
 
           data.types.forEach(type=>{
-            total *= damageCalculator.listTem.dmgTable[element][type];
+            //total *= damageCalculator.listTem.dmgTable[element][type];
+            total *= dmgtable[element][type];
           });
           damageCalculator.table2[element].innerHTML = total + '';
 

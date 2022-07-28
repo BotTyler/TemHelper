@@ -1,6 +1,6 @@
   import { AppWindow } from "../AppWindow";
   import { kWindowNames, kGamesFeatures } from "../consts";
-import { TemData, temListInterface } from "../TemData";
+import { eggMoveInterface, TemData, temListInterface } from "../TemData";
   
   import WindowState = overwolf.windows.WindowStateEx;
   
@@ -10,69 +10,20 @@ import { TemData, temListInterface } from "../TemData";
     private static temBreed2:HTMLElement;
     private static temBreed3:HTMLElement;
 
-    private static tem1hp:HTMLInputElement;
-    private static tem1sta:HTMLInputElement;
-    private static tem1spd:HTMLInputElement;
-    private static tem1atk:HTMLInputElement;
-    private static tem1spatk:HTMLInputElement;
-    private static tem1def:HTMLInputElement;
-    private static tem1spdef:HTMLInputElement;
+    private static eggMoveDiv:HTMLElement;
 
-    private static hpval1:HTMLElement;
-    private static staval1:HTMLElement;
-    private static spdval1:HTMLElement;
-    private static atkval1:HTMLElement;
-    private static spatkval1:HTMLElement;
-    private static defval1:HTMLElement;
-    private static spdefval1:HTMLElement;
+    private static male:temListInterface; // temtem2
+    private static female:temListInterface; // temtem1
 
-    
+    private stats:string[] = ['hp','sta','spd','atk','spatk','def','spdef'];
+    private tem1:HTMLInputElement[] = new Array(this.stats.length);
+    private tem2:HTMLInputElement[] = new Array(this.stats.length);
+    private val1:HTMLElement[] = new Array(this.stats.length);
+    private val2:HTMLElement[] = new Array(this.stats.length);
+    private minavgmax:HTMLElement[][] = new Array(this.stats.length);
 
+    private static tDataClass:TemData;
 
-    private static tem2hp:HTMLInputElement;
-    private static tem2sta:HTMLInputElement;
-    private static tem2spd:HTMLInputElement;
-    private static tem2atk:HTMLInputElement;
-    private static tem2spatk:HTMLInputElement;
-    private static tem2def:HTMLInputElement;
-    private static tem2spdef:HTMLInputElement;
-
-    
-    private static hpval2:HTMLElement;
-    private static staval2:HTMLElement;
-    private static spdval2:HTMLElement;
-    private static atkval2:HTMLElement;
-    private static spatkval2:HTMLElement;
-    private static defval2:HTMLElement;
-    private static spdefval2:HTMLElement;
-
-    private static minhp:HTMLElement;
-    private static avghp:HTMLElement;
-    private static maxhp:HTMLElement;
-    
-    private static minsta:HTMLElement;
-    private static avgsta:HTMLElement;
-    private static maxsta:HTMLElement;    
-    
-    private static minspd:HTMLElement;
-    private static avgspd:HTMLElement;
-    private static maxspd:HTMLElement;    
-    
-    private static minatk:HTMLElement;
-    private static avgatk:HTMLElement;
-    private static maxatk:HTMLElement;    
-    
-    private static minspatk:HTMLElement;
-    private static avgspatk:HTMLElement;
-    private static maxspatk:HTMLElement;    
-    
-    private static mindef:HTMLElement;
-    private static avgdef:HTMLElement;
-    private static maxdef:HTMLElement;    
-    
-    private static minspdef:HTMLElement;
-    private static avgspdef:HTMLElement;
-    private static maxspdef:HTMLElement;
     
     private static _instance: breedingCalc;
 
@@ -99,20 +50,26 @@ import { TemData, temListInterface } from "../TemData";
             return 'yellow'
         }
     }
+
     private constructor() {
         super(kWindowNames.breedingCalc);
+
+        const {temData} = overwolf.windows.getMainWindow();
+        breedingCalc.tDataClass = temData;
 
 
         breedingCalc.temBreed1 = document.getElementById('temBreed1');
         breedingCalc.temBreed2 = document.getElementById('temBreed2');
         breedingCalc.temBreed3 = document.getElementById('temBreed3');
 
+        breedingCalc.eggMoveDiv = document.getElementById('eggmoves');
+
         breedingCalc.temBreed1.addEventListener('click', () => {
             overwolf.windows.obtainDeclaredWindow('TemTemSelector', function(result:overwolf.windows.WindowResult){
               overwolf.windows.restore(result.window.name);
             });
     
-            overwolf.windows.sendMessage(kWindowNames.breedingCalc, kWindowNames.breedingCalc, '1', ()=>{console.log('Msg Has been sent to TemTemSeelctor waiting for resposne.')}); // send msg to the temtemselector page need to move to where one of the portait pictures are clicked
+            overwolf.windows.sendMessage(kWindowNames.TemTemSelector, kWindowNames.breedingCalc, '1', ()=>{console.log('Msg Has been sent to TemTemSeelctor waiting for resposne.')}); // send msg to the temtemselector page need to move to where one of the portait pictures are clicked
     
         });
 
@@ -121,21 +78,115 @@ import { TemData, temListInterface } from "../TemData";
               overwolf.windows.restore(result.window.name);
             });
     
-            overwolf.windows.sendMessage(kWindowNames.breedingCalc, kWindowNames.breedingCalc, '1', ()=>{console.log('Msg Has been sent to TemTemSeelctor waiting for resposne.')}); // send msg to the temtemselector page need to move to where one of the portait pictures are clicked
+            overwolf.windows.sendMessage(kWindowNames.TemTemSelector, kWindowNames.breedingCalc, '2', ()=>{console.log('Msg Has been sent to TemTemSeelctor waiting for resposne.')}); // send msg to the temtemselector page need to move to where one of the portait pictures are clicked
     
         });
 
-
-        
       overwolf.windows.onMessageReceived.addListener(function(message){
         //console.log("MSG RECIEVED: " + message.id);
         const msgContents:temListInterface = message.content;
+        console.log('msg contents: ' + msgContents.name + ' ID: ' + message.id);
         if(+message.id === 1){
+            console.log('female');
             // female temtem
             breedingCalc.temBreed1.setAttribute('src', msgContents.portraitWikiUrl);
-            breedingCalc.temBreed3.setAttribute('src', msgContents.portraitWikiUrl);
+
+            breedingCalc.female = msgContents;
+
+
         }else if(+message.id === 2){
+            console.log('female');
             breedingCalc.temBreed2.setAttribute('src', msgContents.portraitWikiUrl);
+
+
+            breedingCalc.male = msgContents;
+        }
+        console.log('male: ' + breedingCalc.male + '\nfemale: ' + breedingCalc.female)
+        if(breedingCalc.male != null && breedingCalc.female != null){
+            // both are ready
+            breedingCalc.temBreed3.setAttribute('src', msgContents.portraitWikiUrl);
+            const eggMoves:eggMoveInterface[] = breedingCalc.tDataClass.getEggMoves(breedingCalc.male, breedingCalc.female);
+
+            breedingCalc.eggMoveDiv.innerHTML = '';
+
+            // start the creation of the egg move div
+            let colNumber:number = 0;
+            eggMoves.forEach(element => {
+
+                // create the parentdiv
+                const parentDiv:HTMLElement = document.createElement('div');
+                parentDiv.setAttribute('class', 'temInheritMove movecolor');
+
+
+                // create the moves div
+                const movesParentDiv:HTMLElement = document.createElement('div');
+                movesParentDiv.setAttribute('class', 'moves');
+
+                // create the first child in the moves div and append it (always there)
+                const firstHold:HTMLElement = document.createElement('div');
+                firstHold.setAttribute('class', 'hold '+element.type.toLowerCase()+'color');
+                movesParentDiv.append(firstHold);
+                for(let counter = 0; counter < element.hold; counter++){
+                    const extraHolds:HTMLElement = document.createElement('div');
+                    extraHolds.setAttribute('class', 'ehold '+element.type.toLowerCase()+'color');
+                    movesParentDiv.append(extraHolds);
+                }
+
+                // append all movesdiv to the parent div
+                parentDiv.append(movesParentDiv);
+
+
+                // create the name div
+                const moveNameDiv:HTMLElement = document.createElement('div');
+                moveNameDiv.setAttribute('class', 'moveName');
+
+                //create the label and add it
+                const nameLabel:HTMLElement = document.createElement('label');
+                nameLabel.innerHTML = element.name;
+                moveNameDiv.append(nameLabel);
+
+                // add the nameDiv to the parentdiv
+                parentDiv.append(moveNameDiv);
+
+
+                // create the hpstaDivParent
+                const hpstaDiv:HTMLElement = document.createElement('div');
+                hpstaDiv.setAttribute('class', 'hpstaloc');
+
+                // create the hp div and the label
+                const hpDiv:HTMLElement = document.createElement('div');
+                const hpLabel:HTMLElement = document.createElement('label');
+                hpLabel.setAttribute('class', 'hpcolor');
+                hpLabel.innerHTML = element.damage+'';
+
+                // add the label to the hpdiv
+                hpDiv.append(hpLabel);
+
+                //add the hpdiv to the parent div
+                hpstaDiv.append(hpDiv);
+
+
+
+                // create the sta div and the label
+                const staDiv:HTMLElement = document.createElement('div');
+                const staLabel:HTMLElement = document.createElement('label');
+                staLabel.setAttribute('class', 'stacolor');
+                hpLabel.innerHTML = element.staminaCost+'';
+
+                // add the label to the sta
+                staDiv.append(staLabel);
+
+                //add the stadiv to the parent
+                hpstaDiv.append(staDiv);
+
+
+                //append the hpstadiv to the parentdiv
+                parentDiv.append(hpstaDiv);
+
+
+
+                breedingCalc.eggMoveDiv.append(parentDiv);
+            });
         }
 
         //damageCalculator.setTableRow(message.content, +message.id, fields);
@@ -143,607 +194,88 @@ import { TemData, temListInterface } from "../TemData";
       });
 
 
-
-        breedingCalc.tem1hp = document.getElementById('tem1hp') as HTMLInputElement;
-        breedingCalc.tem1sta = document.getElementById('tem1sta') as HTMLInputElement;
-        breedingCalc.tem1spd = document.getElementById('tem1spd') as HTMLInputElement;
-        breedingCalc.tem1atk = document.getElementById('tem1atk') as HTMLInputElement;
-        breedingCalc.tem1spatk = document.getElementById('tem1spatk') as HTMLInputElement;
-        breedingCalc.tem1def = document.getElementById('tem1def') as HTMLInputElement;
-        breedingCalc.tem1spdef = document.getElementById('tem1spdef') as HTMLInputElement;
-
-        breedingCalc.hpval1 = document.getElementById('hpval1');
-        breedingCalc.staval1 = document.getElementById('staval1');
-        breedingCalc.spdval1 = document.getElementById('spdval1');
-        breedingCalc.atkval1 = document.getElementById('atkval1');
-        breedingCalc.spatkval1 = document.getElementById('spatkval1');
-        breedingCalc.defval1 = document.getElementById('defval1');
-        breedingCalc.spdefval1 = document.getElementById('spdefval1');
-
-
-
-        breedingCalc.tem2hp = document.getElementById('tem2hp') as HTMLInputElement;
-        breedingCalc.tem2sta = document.getElementById('tem2sta') as HTMLInputElement;
-        breedingCalc.tem2spd = document.getElementById('tem2spd') as HTMLInputElement;
-        breedingCalc.tem2atk = document.getElementById('tem2atk') as HTMLInputElement;
-        breedingCalc.tem2spatk = document.getElementById('tem2spatk') as HTMLInputElement;
-        breedingCalc.tem2def = document.getElementById('tem2def') as HTMLInputElement;
-        breedingCalc.tem2spdef = document.getElementById('tem2spdef') as HTMLInputElement;
-
-        breedingCalc.hpval2 = document.getElementById('hpval2');
-        breedingCalc.staval2 = document.getElementById('staval2');
-        breedingCalc.spdval2 = document.getElementById('spdval2');
-        breedingCalc.atkval2 = document.getElementById('atkval2');
-        breedingCalc.spatkval2 = document.getElementById('spatkval2');
-        breedingCalc.defval2 = document.getElementById('defval2');
-        breedingCalc.spdefval2 = document.getElementById('spdefval2');
-
-
-
-        breedingCalc.minhp = document.getElementById('minhp');
-        breedingCalc.avghp = document.getElementById('avghp');
-        breedingCalc.maxhp = document.getElementById('maxhp');
-
-        breedingCalc.minsta = document.getElementById('minsta');
-        breedingCalc.avgsta = document.getElementById('avgsta');
-        breedingCalc.maxsta = document.getElementById('maxsta');
-
-        breedingCalc.minspd = document.getElementById('minspd');
-        breedingCalc.avgspd = document.getElementById('avgspd');
-        breedingCalc.maxspd = document.getElementById('maxspd');
-
-        breedingCalc.minatk = document.getElementById('minatk');
-        breedingCalc.avgatk = document.getElementById('avgatk');
-        breedingCalc.maxatk = document.getElementById('maxatk');
-
-        breedingCalc.minspatk = document.getElementById('minspatk');
-        breedingCalc.avgspatk = document.getElementById('avgspatk');
-        breedingCalc.maxspatk = document.getElementById('maxspatk');
-
-        breedingCalc.mindef = document.getElementById('mindef');
-        breedingCalc.avgdef = document.getElementById('avgdef');
-        breedingCalc.maxdef = document.getElementById('maxdef');
-
-        breedingCalc.minspdef = document.getElementById('minspdef');
-        breedingCalc.avgspdef = document.getElementById('avgspdef');
-        breedingCalc.maxspdef = document.getElementById('maxspdef');
-
-
-
-
-        
-        breedingCalc.tem1hp.addEventListener('input', () => {
-
-            const slider1:HTMLInputElement = breedingCalc.tem1hp;
-            const slider2:HTMLInputElement = breedingCalc.tem2hp;
-
-            const min:HTMLElement = breedingCalc.minhp;
-            const avg:HTMLElement = breedingCalc.avghp;
-            const max:HTMLElement = breedingCalc.maxhp;
-
-            const curLabel:HTMLElement = breedingCalc.hpval1;
-
-            const stat1:number = +slider1.value;
-            const stat2:number = +slider2.value;
-
-            //change the slider label
-            curLabel.innerHTML = stat1 + '';
-
-            const minVal:number = this.min(stat1, stat2);
-            const avgVal:number = this.avg(stat1,stat2);
-            const maxVal:number = this.max(stat1, stat2);
-            
-
-            min.innerHTML = minVal+'';
-            avg.innerHTML = avgVal+'';
-            max.innerHTML = maxVal+'';
-
-            // change color based on number
-            const minColor:string = this.getColor(minVal);
-            const avgColor:string = this.getColor(avgVal);
-            const maxColor:string = this.getColor(maxVal);
-
-            min.setAttribute('class', minColor);
-            avg.setAttribute('class', avgColor);
-            max.setAttribute('class', maxColor);
-
-        });
-
-        breedingCalc.tem2hp.addEventListener('input', () => {
-
-            const slider1:HTMLInputElement = breedingCalc.tem1hp;
-            const slider2:HTMLInputElement = breedingCalc.tem2hp;
-
-            const min:HTMLElement = breedingCalc.minhp;
-            const avg:HTMLElement = breedingCalc.avghp;
-            const max:HTMLElement = breedingCalc.maxhp;
-
-            const curLabel:HTMLElement = breedingCalc.hpval2;
-
-            const stat1:number = +slider1.value;
-            const stat2:number = +slider2.value;
-
-            //change the slider label
-            curLabel.innerHTML = stat2 + '';
-
-            const minVal:number = this.min(stat1, stat2);
-            const avgVal:number = this.avg(stat1,stat2);
-            const maxVal:number = this.max(stat1, stat2);
-            
-
-            min.innerHTML = minVal+'';
-            avg.innerHTML = avgVal+'';
-            max.innerHTML = maxVal+'';
-
-            // change color based on number
-            const minColor:string = this.getColor(minVal);
-            const avgColor:string = this.getColor(avgVal);
-            const maxColor:string = this.getColor(maxVal);
-
-            min.setAttribute('class', minColor);
-            avg.setAttribute('class', avgColor);
-            max.setAttribute('class', maxColor);
-
-        });
-
-
-        
-        breedingCalc.tem1sta.addEventListener('input', () => {
-
-            const slider1:HTMLInputElement = breedingCalc.tem1sta;
-            const slider2:HTMLInputElement = breedingCalc.tem2sta;
-
-            const min:HTMLElement = breedingCalc.minsta;
-            const avg:HTMLElement = breedingCalc.avgsta;
-            const max:HTMLElement = breedingCalc.maxsta;
-
-            const curLabel:HTMLElement = breedingCalc.staval1;
-
-            const stat1:number = +slider1.value;
-            const stat2:number = +slider2.value;
-
-            //change the slider label
-            curLabel.innerHTML = stat1 + '';
-
-            const minVal:number = this.min(stat1, stat2);
-            const avgVal:number = this.avg(stat1,stat2);
-            const maxVal:number = this.max(stat1, stat2);
-            
-
-            min.innerHTML = minVal+'';
-            avg.innerHTML = avgVal+'';
-            max.innerHTML = maxVal+'';
-
-            // change color based on number
-            const minColor:string = this.getColor(minVal);
-            const avgColor:string = this.getColor(avgVal);
-            const maxColor:string = this.getColor(maxVal);
-
-            min.setAttribute('class', minColor);
-            avg.setAttribute('class', avgColor);
-            max.setAttribute('class', maxColor);
-
-        });
-
-        breedingCalc.tem2sta.addEventListener('input', () => {
-
-            const slider1:HTMLInputElement = breedingCalc.tem1sta;
-            const slider2:HTMLInputElement = breedingCalc.tem2sta;
-
-            const min:HTMLElement = breedingCalc.minsta;
-            const avg:HTMLElement = breedingCalc.avgsta;
-            const max:HTMLElement = breedingCalc.maxsta;
-
-            const curLabel:HTMLElement = breedingCalc.staval2;
-
-            const stat1:number = +slider1.value;
-            const stat2:number = +slider2.value;
-
-            //change the slider label
-            curLabel.innerHTML = stat2 + '';
-
-            const minVal:number = this.min(stat1, stat2);
-            const avgVal:number = this.avg(stat1,stat2);
-            const maxVal:number = this.max(stat1, stat2);
-            
-
-            min.innerHTML = minVal+'';
-            avg.innerHTML = avgVal+'';
-            max.innerHTML = maxVal+'';
-
-            // change color based on number
-            const minColor:string = this.getColor(minVal);
-            const avgColor:string = this.getColor(avgVal);
-            const maxColor:string = this.getColor(maxVal);
-
-            min.setAttribute('class', minColor);
-            avg.setAttribute('class', avgColor);
-            max.setAttribute('class', maxColor);
-
-        });
-
-
-        
-        breedingCalc.tem1spd.addEventListener('input', () => {
-
-            const slider1:HTMLInputElement = breedingCalc.tem1spd;
-            const slider2:HTMLInputElement = breedingCalc.tem2spd;
-
-            const min:HTMLElement = breedingCalc.minspd;
-            const avg:HTMLElement = breedingCalc.avgspd;
-            const max:HTMLElement = breedingCalc.maxspd;
-
-            const curLabel:HTMLElement = breedingCalc.spdval1;
-
-            const stat1:number = +slider1.value;
-            const stat2:number = +slider2.value;
-
-            //change the slider label
-            curLabel.innerHTML = stat1 + '';
-
-            const minVal:number = this.min(stat1, stat2);
-            const avgVal:number = this.avg(stat1,stat2);
-            const maxVal:number = this.max(stat1, stat2);
-            
-
-            min.innerHTML = minVal+'';
-            avg.innerHTML = avgVal+'';
-            max.innerHTML = maxVal+'';
-
-            // change color based on number
-            const minColor:string = this.getColor(minVal);
-            const avgColor:string = this.getColor(avgVal);
-            const maxColor:string = this.getColor(maxVal);
-
-            min.setAttribute('class', minColor);
-            avg.setAttribute('class', avgColor);
-            max.setAttribute('class', maxColor);
-
-        });
-
-        breedingCalc.tem2spd.addEventListener('input', () => {
-
-            const slider1:HTMLInputElement = breedingCalc.tem1spd;
-            const slider2:HTMLInputElement = breedingCalc.tem2spd;
-
-            const min:HTMLElement = breedingCalc.minspd;
-            const avg:HTMLElement = breedingCalc.avgspd;
-            const max:HTMLElement = breedingCalc.maxspd;
-
-            const curLabel:HTMLElement = breedingCalc.spdval2;
-
-            const stat1:number = +slider1.value;
-            const stat2:number = +slider2.value;
-
-            //change the slider label
-            curLabel.innerHTML = stat2 + '';
-
-            const minVal:number = this.min(stat1, stat2);
-            const avgVal:number = this.avg(stat1,stat2);
-            const maxVal:number = this.max(stat1, stat2);
-            
-
-            min.innerHTML = minVal+'';
-            avg.innerHTML = avgVal+'';
-            max.innerHTML = maxVal+'';
-
-            // change color based on number
-            const minColor:string = this.getColor(minVal);
-            const avgColor:string = this.getColor(avgVal);
-            const maxColor:string = this.getColor(maxVal);
-
-            min.setAttribute('class', minColor);
-            avg.setAttribute('class', avgColor);
-            max.setAttribute('class', maxColor);
-
-        });
-
-
-        
-        breedingCalc.tem1atk.addEventListener('input', () => {
-
-            const slider1:HTMLInputElement = breedingCalc.tem1atk;
-            const slider2:HTMLInputElement = breedingCalc.tem2atk;
-
-            const min:HTMLElement = breedingCalc.minatk;
-            const avg:HTMLElement = breedingCalc.avgatk;
-            const max:HTMLElement = breedingCalc.maxatk;
-
-            const curLabel:HTMLElement = breedingCalc.atkval1;
-
-            const stat1:number = +slider1.value;
-            const stat2:number = +slider2.value;
-
-            //change the slider label
-            curLabel.innerHTML = stat1 + '';
-
-            const minVal:number = this.min(stat1, stat2);
-            const avgVal:number = this.avg(stat1,stat2);
-            const maxVal:number = this.max(stat1, stat2);
-            
-
-            min.innerHTML = minVal+'';
-            avg.innerHTML = avgVal+'';
-            max.innerHTML = maxVal+'';
-
-            // change color based on number
-            const minColor:string = this.getColor(minVal);
-            const avgColor:string = this.getColor(avgVal);
-            const maxColor:string = this.getColor(maxVal);
-
-            min.setAttribute('class', minColor);
-            avg.setAttribute('class', avgColor);
-            max.setAttribute('class', maxColor);
-
-        });
-
-        breedingCalc.tem2atk.addEventListener('input', () => {
-
-            const slider1:HTMLInputElement = breedingCalc.tem1atk;
-            const slider2:HTMLInputElement = breedingCalc.tem2atk;
-
-            const min:HTMLElement = breedingCalc.minatk;
-            const avg:HTMLElement = breedingCalc.avgatk;
-            const max:HTMLElement = breedingCalc.maxatk;
-
-            const curLabel:HTMLElement = breedingCalc.atkval2;
-
-            const stat1:number = +slider1.value;
-            const stat2:number = +slider2.value;
-
-            //change the slider label
-            curLabel.innerHTML = stat2 + '';
-
-            const minVal:number = this.min(stat1, stat2);
-            const avgVal:number = this.avg(stat1,stat2);
-            const maxVal:number = this.max(stat1, stat2);
-            
-
-            min.innerHTML = minVal+'';
-            avg.innerHTML = avgVal+'';
-            max.innerHTML = maxVal+'';
-
-            // change color based on number
-            const minColor:string = this.getColor(minVal);
-            const avgColor:string = this.getColor(avgVal);
-            const maxColor:string = this.getColor(maxVal);
-
-            min.setAttribute('class', minColor);
-            avg.setAttribute('class', avgColor);
-            max.setAttribute('class', maxColor);
-
-        });
-
-
-        
-        breedingCalc.tem1spatk.addEventListener('input', () => {
-
-            const slider1:HTMLInputElement = breedingCalc.tem1spatk;
-            const slider2:HTMLInputElement = breedingCalc.tem2spatk;
-
-            const min:HTMLElement = breedingCalc.minspatk;
-            const avg:HTMLElement = breedingCalc.avgspatk;
-            const max:HTMLElement = breedingCalc.maxspatk;
-
-            const curLabel:HTMLElement = breedingCalc.spatkval1;
-
-            const stat1:number = +slider1.value;
-            const stat2:number = +slider2.value;
-
-            //change the slider label
-            curLabel.innerHTML = stat1 + '';
-
-            const minVal:number = this.min(stat1, stat2);
-            const avgVal:number = this.avg(stat1,stat2);
-            const maxVal:number = this.max(stat1, stat2);
-            
-
-            min.innerHTML = minVal+'';
-            avg.innerHTML = avgVal+'';
-            max.innerHTML = maxVal+'';
-
-            // change color based on number
-            const minColor:string = this.getColor(minVal);
-            const avgColor:string = this.getColor(avgVal);
-            const maxColor:string = this.getColor(maxVal);
-
-            min.setAttribute('class', minColor);
-            avg.setAttribute('class', avgColor);
-            max.setAttribute('class', maxColor);
-
-        });
-
-        breedingCalc.tem2spatk.addEventListener('input', () => {
-
-            const slider1:HTMLInputElement = breedingCalc.tem1spatk;
-            const slider2:HTMLInputElement = breedingCalc.tem2spatk;
-
-            const min:HTMLElement = breedingCalc.minspatk;
-            const avg:HTMLElement = breedingCalc.avgspatk;
-            const max:HTMLElement = breedingCalc.maxspatk;
-
-            const curLabel:HTMLElement = breedingCalc.spatkval2;
-
-            const stat1:number = +slider1.value;
-            const stat2:number = +slider2.value;
-
-            //change the slider label
-            curLabel.innerHTML = stat2 + '';
-
-            const minVal:number = this.min(stat1, stat2);
-            const avgVal:number = this.avg(stat1,stat2);
-            const maxVal:number = this.max(stat1, stat2);
-            
-
-            min.innerHTML = minVal+'';
-            avg.innerHTML = avgVal+'';
-            max.innerHTML = maxVal+'';
-
-            // change color based on number
-            const minColor:string = this.getColor(minVal);
-            const avgColor:string = this.getColor(avgVal);
-            const maxColor:string = this.getColor(maxVal);
-
-            min.setAttribute('class', minColor);
-            avg.setAttribute('class', avgColor);
-            max.setAttribute('class', maxColor);
-
-        });
-
-
-        
-        breedingCalc.tem1def.addEventListener('input', () => {
-
-            const slider1:HTMLInputElement = breedingCalc.tem1def;
-            const slider2:HTMLInputElement = breedingCalc.tem2def;
-
-            const min:HTMLElement = breedingCalc.mindef;
-            const avg:HTMLElement = breedingCalc.avgdef;
-            const max:HTMLElement = breedingCalc.maxdef;
-
-            const curLabel:HTMLElement = breedingCalc.defval1;
-
-            const stat1:number = +slider1.value;
-            const stat2:number = +slider2.value;
-
-            //change the slider label
-            curLabel.innerHTML = stat1 + '';
-
-            const minVal:number = this.min(stat1, stat2);
-            const avgVal:number = this.avg(stat1,stat2);
-            const maxVal:number = this.max(stat1, stat2);
-            
-
-            min.innerHTML = minVal+'';
-            avg.innerHTML = avgVal+'';
-            max.innerHTML = maxVal+'';
-
-            // change color based on number
-            const minColor:string = this.getColor(minVal);
-            const avgColor:string = this.getColor(avgVal);
-            const maxColor:string = this.getColor(maxVal);
-
-            min.setAttribute('class', minColor);
-            avg.setAttribute('class', avgColor);
-            max.setAttribute('class', maxColor);
-
-        });
-
-        breedingCalc.tem2def.addEventListener('input', () => {
-
-            const slider1:HTMLInputElement = breedingCalc.tem1def;
-            const slider2:HTMLInputElement = breedingCalc.tem2def;
-
-            const min:HTMLElement = breedingCalc.mindef;
-            const avg:HTMLElement = breedingCalc.avgdef;
-            const max:HTMLElement = breedingCalc.maxdef;
-
-            const curLabel:HTMLElement = breedingCalc.defval2;
-
-            const stat1:number = +slider1.value;
-            const stat2:number = +slider2.value;
-
-            //change the slider label
-            curLabel.innerHTML = stat2 + '';
-
-            const minVal:number = this.min(stat1, stat2);
-            const avgVal:number = this.avg(stat1,stat2);
-            const maxVal:number = this.max(stat1, stat2);
-            
-
-            min.innerHTML = minVal+'';
-            avg.innerHTML = avgVal+'';
-            max.innerHTML = maxVal+'';
-
-            // change color based on number
-            const minColor:string = this.getColor(minVal);
-            const avgColor:string = this.getColor(avgVal);
-            const maxColor:string = this.getColor(maxVal);
-
-            min.setAttribute('class', minColor);
-            avg.setAttribute('class', avgColor);
-            max.setAttribute('class', maxColor);
-
-        });
-
-
-        
-        breedingCalc.tem1spdef.addEventListener('input', () => {
-
-            const slider1:HTMLInputElement = breedingCalc.tem1spdef;
-            const slider2:HTMLInputElement = breedingCalc.tem2spdef;
-
-            const min:HTMLElement = breedingCalc.minspdef;
-            const avg:HTMLElement = breedingCalc.avgspdef;
-            const max:HTMLElement = breedingCalc.maxspdef;
-
-            const curLabel:HTMLElement = breedingCalc.spdefval1;
-
-            const stat1:number = +slider1.value;
-            const stat2:number = +slider2.value;
-
-            //change the slider label
-            curLabel.innerHTML = stat1 + '';
-
-            const minVal:number = this.min(stat1, stat2);
-            const avgVal:number = this.avg(stat1,stat2);
-            const maxVal:number = this.max(stat1, stat2);
-            
-
-            min.innerHTML = minVal+'';
-            avg.innerHTML = avgVal+'';
-            max.innerHTML = maxVal+'';
-
-            // change color based on number
-            const minColor:string = this.getColor(minVal);
-            const avgColor:string = this.getColor(avgVal);
-            const maxColor:string = this.getColor(maxVal);
-
-            min.setAttribute('class', minColor);
-            avg.setAttribute('class', avgColor);
-            max.setAttribute('class', maxColor);
-
-        });
-
-        breedingCalc.tem2spdef.addEventListener('input', () => {
-
-            const slider1:HTMLInputElement = breedingCalc.tem1spdef;
-            const slider2:HTMLInputElement = breedingCalc.tem2spdef;
-
-            const min:HTMLElement = breedingCalc.minspdef;
-            const avg:HTMLElement = breedingCalc.avgspdef;
-            const max:HTMLElement = breedingCalc.maxspdef;
-
-            const curLabel:HTMLElement = breedingCalc.spdefval2;
-
-            const stat1:number = +slider1.value;
-            const stat2:number = +slider2.value;
-
-            //change the slider label
-            curLabel.innerHTML = stat2 + '';
-
-            const minVal:number = this.min(stat1, stat2);
-            const avgVal:number = this.avg(stat1,stat2);
-            const maxVal:number = this.max(stat1, stat2);
-            
-
-            min.innerHTML = minVal+'';
-            avg.innerHTML = avgVal+'';
-            max.innerHTML = maxVal+'';
-
-            // change color based on number
-            const minColor:string = this.getColor(minVal);
-            const avgColor:string = this.getColor(avgVal);
-            const maxColor:string = this.getColor(maxVal);
-
-            min.setAttribute('class', minColor);
-            avg.setAttribute('class', avgColor);
-            max.setAttribute('class', maxColor);
-
-        });
-
-
-
+        for(let counter = 0; counter < this.stats.length; counter++){
+            this.tem1[counter] = document.getElementById('tem1' + this.stats[counter]) as HTMLInputElement;
+            this.tem2[counter] = document.getElementById('tem2' + this.stats[counter]) as HTMLInputElement;
+            this.val1[counter] = document.getElementById(this.stats[counter] + 'val1');
+            this.val2[counter] = document.getElementById(this.stats[counter] + 'val2');
+
+            this.minavgmax[counter] = new Array(3);
+            this.minavgmax[counter][0] = document.getElementById('min'+this.stats[counter]);
+            this.minavgmax[counter][1] = document.getElementById('avg'+this.stats[counter]); 
+            this.minavgmax[counter][2] = document.getElementById('max'+this.stats[counter]);
+
+            this.tem1[counter].addEventListener('input', () => {
+                const slider1:HTMLInputElement = this.tem1[counter];
+                const slider2:HTMLInputElement = this.tem2[counter];
+
+                const min:HTMLElement = this.minavgmax[counter][0];
+                const avg:HTMLElement = this.minavgmax[counter][1];
+                const max:HTMLElement = this.minavgmax[counter][2];
+
+                const curLabel:HTMLElement = this.val1[counter];
+
+                const stat1:number = +slider1.value;
+                const stat2:number = +slider2.value;
+
+                //change the slider label
+                curLabel.innerHTML = stat1 + '';
+
+                const minVal:number = this.min(stat1, stat2);
+                const avgVal:number = this.avg(stat1,stat2);
+                const maxVal:number = this.max(stat1, stat2);
+                
+
+                min.innerHTML = minVal+'';
+                avg.innerHTML = avgVal+'';
+                max.innerHTML = maxVal+'';
+
+                // change color based on number
+                const minColor:string = this.getColor(minVal);
+                const avgColor:string = this.getColor(avgVal);
+                const maxColor:string = this.getColor(maxVal);
+
+                min.setAttribute('class', minColor);
+                avg.setAttribute('class', avgColor);
+                max.setAttribute('class', maxColor);
+            });
+
+            this.tem2[counter].addEventListener('input', () => {
+                const slider1:HTMLInputElement = this.tem1[counter];
+                const slider2:HTMLInputElement = this.tem2[counter];
+
+                const min:HTMLElement = this.minavgmax[counter][0];
+                const avg:HTMLElement = this.minavgmax[counter][1];
+                const max:HTMLElement = this.minavgmax[counter][2];
+
+                const curLabel:HTMLElement = this.val2[counter];
+
+                const stat1:number = +slider1.value;
+                const stat2:number = +slider2.value;
+
+                //change the slider label
+                curLabel.innerHTML = stat1 + '';
+
+                const minVal:number = this.min(stat1, stat2);
+                const avgVal:number = this.avg(stat1,stat2);
+                const maxVal:number = this.max(stat1, stat2);
+                
+
+                min.innerHTML = minVal+'';
+                avg.innerHTML = avgVal+'';
+                max.innerHTML = maxVal+'';
+
+                // change color based on number
+                const minColor:string = this.getColor(minVal);
+                const avgColor:string = this.getColor(avgVal);
+                const maxColor:string = this.getColor(maxVal);
+
+                min.setAttribute('class', minColor);
+                avg.setAttribute('class', avgColor);
+                max.setAttribute('class', maxColor);
+            });
+
+        }
 
     }
 

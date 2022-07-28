@@ -10,62 +10,100 @@
 
   /*temtypes colors*/
   .neutralcolor{
-    color: #e6f7f7;
+    background: #e6f7f7;
   }
 
   .firecolor{
-    color: #e85c4e;
+    background: #e85c4e;
   }
 
   .watercolor{
-    color: #45cbff;
+    background: #45cbff;
   }
 
   .naturecolor{
-    color: #adde77;
+    background: #adde77;
   }
 
   .electriccolor{
-    color: #ffe174;
+    background: #ffe174;
   }
 
   .earthcolor{
-    color: #ba7a5c;
+    background: #ba7a5c;
 
   }
 
   .mentalcolor{
-    color: #c36993;
+    background: #c36993;
 
   }
 
   .windcolor{
-    color: #08fab3;
+    background: #08fab3;
 
   }
 
   .digitalcolor{
-    color: #94c0c1;
+    background: #94c0c1;
 
   }
 
   .meleecolor{
-    color: #fa9260;
+    background: #fa9260;
 
   }
 
   .crystalcolor{
-    color: #ea4a68;
+    background: #ea4a68;
 
   }
 
   .toxiccolor{
-    color: #5c565c;
+    background: #5c565c;
 
+  }
+
+
+  .movecolor{
+    background: #2a2a2a;
+  }
+
+  .hpcolor{
+    background: #b13d3d;
+  }
+
+  .stacolor{
+    background: #1cd0d3;
   }
   /*end of temtypes colors*/
 
- 
+  .hpstaloc{
+    position: absolute;
+    right: 12px;
+    top: 0px;
+    height: inherit; 
+  }
+  .hpstaloc div{
+    align-items: center;
+    justify-content: center;
+    align-content: center;
+    height: 50%;
+    margin-top: 1px;
+  }
+  .hpstaloc div label{
+    font-size: small;
+    padding: 3px;
+    border-radius: 8px;
+    border: 1px solid black;
+    text-shadow:
+		-1px -1px 0 #000,
+		1px -1px 0 #000,
+		-1px 1px 0 #000,
+		1px 1px 0 #000;
+  }
+  
+
   .temBorder{
     width: 30%;
     height: 98%;
@@ -223,19 +261,17 @@ footer{
 .hold{
   width: 45px;
   height: 100%;
-  background: white;
   transform: skew(340deg);
   position: relative;
   left: -20px;
 
 }
 .ehold{
-  width: 15px;
+  width: 9px;
   height: 100%;
-  background: blue;
   transform: skew(340deg);
   position: relative;
-  left: -18px;
+  left: -20px;
   margin-left: 6px;
 }
 
@@ -247,11 +283,29 @@ footer{
   border-radius: 0px 10px 10px 0px;
 
   width: 30%;
-  height: 40px;
-
-  
-  background-color: red;
+  height: 50px;
 
   margin-bottom: 5px;
+  position: relative;
+}
 
+.moves{
+  display: flex;
+}
+
+.moveName{
+  position: absolute;
+  top: 15px;
+  left: 16px;
+}
+
+.moveName label{
+  color: white;
+  font-weight: bold;
+  font-size: medium;
+	text-shadow:
+		-1px -1px 0 #000,
+		1px -1px 0 #000,
+		-1px 1px 0 #000,
+		1px 1px 0 #000;
 }
