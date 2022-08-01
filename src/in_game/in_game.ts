@@ -31,51 +31,51 @@ class InGame extends AppWindow {
     this.team = document.getElementById('team');
     this.freetem = document.getElementById('freetem');
     this.breedingCalc = document.getElementById('breedingCalc');
-    const {temData}= overwolf.windows.getMainWindow();
+    const { temData } = overwolf.windows.getMainWindow();
 
 
-    
 
-    this.team.addEventListener('click', function(){
+
+    this.team.addEventListener('click', function () {
     });
-    this.dmgCalc.addEventListener('click', function(){
-      if(temData.isDataAvailable()){
-        overwolf.windows.obtainDeclaredWindow(kWindowNames.TemTemSelector, function(result:overwolf.windows.WindowResult){
+    this.dmgCalc.addEventListener('click', function () {
+      if (temData.isDataAvailable()) {
+        overwolf.windows.obtainDeclaredWindow(kWindowNames.TemTemSelector, function (result: overwolf.windows.WindowResult) {
           overwolf.windows.hide(result.window.name);
           //console.log('asdf');
-      });
-        overwolf.windows.obtainDeclaredWindow('damageCalculator', function(result:overwolf.windows.WindowResult){
+        });
+        overwolf.windows.obtainDeclaredWindow('damageCalculator', function (result: overwolf.windows.WindowResult) {
           overwolf.windows.restore(result.window.name);
         });
       }
 
     });
 
-    this.freetem.addEventListener('click', function(){
-      if(temData.isDataAvailable()){
-        overwolf.windows.obtainDeclaredWindow(kWindowNames.TemTemSelector, function(result:overwolf.windows.WindowResult){
+    this.freetem.addEventListener('click', function () {
+      if (temData.isDataAvailable()) {
+        overwolf.windows.obtainDeclaredWindow(kWindowNames.TemTemSelector, function (result: overwolf.windows.WindowResult) {
           overwolf.windows.hide(result.window.name);
           //console.log('asdf');
-      });
-        overwolf.windows.obtainDeclaredWindow('freeTem', function(result:overwolf.windows.WindowResult){
+        });
+        overwolf.windows.obtainDeclaredWindow('freeTem', function (result: overwolf.windows.WindowResult) {
           overwolf.windows.restore(result.window.name);
         });
       }
 
     });
 
-    this.breedingCalc.addEventListener('click', function(){
-      overwolf.windows.obtainDeclaredWindow(kWindowNames.TemTemSelector, function(result:overwolf.windows.WindowResult){
+    this.breedingCalc.addEventListener('click', function () {
+      overwolf.windows.obtainDeclaredWindow(kWindowNames.TemTemSelector, function (result: overwolf.windows.WindowResult) {
         overwolf.windows.hide(result.window.name);
         //console.log('asdf');
-    });
-        overwolf.windows.obtainDeclaredWindow('breedingCalc', function(result:overwolf.windows.WindowResult){
-          overwolf.windows.restore(result.window.name);
+      });
+      overwolf.windows.obtainDeclaredWindow('breedingCalc', function (result: overwolf.windows.WindowResult) {
+        overwolf.windows.restore(result.window.name);
       });
     });
 
 
-    
+
   }
 
   public static instance() {

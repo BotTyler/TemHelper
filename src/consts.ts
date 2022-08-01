@@ -18,3 +18,9 @@ export const kWindowNames = {
   teamCreator: 'teamCreator',
   TemTemSelector: 'TemTemSelector'
 };
+
+export interface breedingCalcSendAndRecieveData{
+  windowId:number;
+  searchTypes:string[];
+
+}

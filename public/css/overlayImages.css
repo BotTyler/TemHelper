@@ -38,6 +38,10 @@
     transform: translateY(2px);
   }
 
+  .elements{
+    display: none;
+  }
+
   .round {
     border-radius: 100%;
   }

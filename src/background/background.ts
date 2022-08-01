@@ -20,7 +20,8 @@ class BackgroundController {
   private static _instance: BackgroundController;
   private _windows: Record<string, OWWindow> = {};
   private _gameListener: OWGameListener;
-  public temData:TemData;
+  public temData: TemData;
+
   private constructor() {
     // Populating the background controller's window dictionary
     this._windows[kWindowNames.desktop] = new OWWindow(kWindowNames.desktop);
@@ -42,7 +43,7 @@ class BackgroundController {
     if (!BackgroundController._instance) {
       BackgroundController._instance = new BackgroundController();
     }
-    
+
     return BackgroundController._instance;
   }
 
@@ -53,10 +54,10 @@ class BackgroundController {
 
     const currWindowName = (await this.isSupportedGameRunning())
       ? kWindowNames.inGame
-      : kWindowNames.desktop;
+      : kWindowNames.inGame;
+
+
     this.temData = new TemData();
-
-
 
     //this.temData.cLogTemTemData(this.temData.temList);
     window.temData = this.temData;
@@ -76,7 +77,7 @@ class BackgroundController {
 
     }
     */
-   
+
 
     this._windows[currWindowName].restore();
 
