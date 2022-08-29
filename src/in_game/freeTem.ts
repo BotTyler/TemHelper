@@ -124,8 +124,6 @@ class FreeTem extends AppWindow {
 
 
     overwolf.windows.onMessageReceived.addListener(function (message) {
-      //console.log("MSG RECIEVED: " + message.id);
-      //TemData.logTemLocation(message.content);
 
       if (message.id === 'freeTem') {
         FreeTem.curTem = <temListInterface>message.content;

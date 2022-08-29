@@ -27,9 +27,7 @@ export class TemData {
 
 
   constructor() {
-    console.log('data collected: ' + TemData.dataCollected);
     if (TemData.dataCollected === false) {
-      console.log('constructor called');
       TemData.temList = undefined;
       TemData.dmgTable = undefined;
       TemData.techniques = undefined;
@@ -56,7 +54,6 @@ export class TemData {
 
       }
     ).subscribe(function (val) {
-      //console.log('asdfasdfasdf1:'+val.temLists + '\n2:'+ val.techniqueList + '\n3:' + val.tableList);
 
       TemData.temList = val.temLists;
       TemData.temList.forEach(element => {
@@ -113,7 +110,6 @@ export class TemData {
     //this.cLogTemTemData(this.temList);
     this.extractBreedingMoves(TemData.temList);
     this.quickSort(TemData.techniques, 0, TemData.techniques.length - 1, this.techniqueSort);
-    console.log('techniques' + TemData.techniques);
   }
 
   private static compareNames(tem1: temListInterface, tem2: temListInterface): boolean {
@@ -126,13 +122,10 @@ export class TemData {
 
 
   private static extractBreedingMoves(arr: temListInterface[]) {
-    //console.log('first');
     arr.forEach(element => {
       var breedingMoves: techniqueInterface[] = new Array();
-      //console.log('first2: ' + element.name + ' ' + element.number + ' : ' + element.techniques);
       element.techniques.forEach(ele => {
         if (ele.source === 'Breeding') {
-          //console.log('adding eggmove at index: ' + breedingMoves.length);
           breedingMoves[breedingMoves.length] = ele;
         }
       });
@@ -156,9 +149,7 @@ export class TemData {
       female.breedingMoves.forEach(femaleMove => {
         if (femaleMove.name === maleMove.name) {
           // potential egg move
-          console.log('looking up: ' + femaleMove.name);
           const a = this.lookupeggmove(femaleMove.name);
-          console.log('Lookup: ' + a);
           eggMoves[eggMoves.length] = a;
         }
 
@@ -176,17 +167,13 @@ export class TemData {
     let top: number = TemData.techniques.length - 1;
 
     while (bottom <= top) {
-      let mid: number = Math.floor((bottom + (top - 1)) / 2);
-      console.log('mid: ' + mid);
+      let mid: number = Math.floor(bottom + ((top - bottom) / 2));
       let val = TemData.techniques[mid];
       if (val.name === name) {
-        console.log('Found move: ' + val.name);
         return val;
       } else if (val.name > name) {
-        console.log('val greater than name: ' + val.name);
         top = mid - 1;
       } else {
-        console.log('val less than name: ' + val.name);
         bottom = mid + 1;
       }
     }

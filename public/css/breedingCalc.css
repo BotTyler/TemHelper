@@ -1,202 +1,214 @@
-.breedingCalcWindowSize{
-    width: 600px;
+.breedingCalcWindowSize {
+  width: 600px;
 
-    /*height: 340px;*/
-    height: fit-content;
-    overflow: hidden;
-  }
-
-
-
-  /*temtypes colors*/
-  .neutralcolor{
-    background: #e6f7f7;
-  }
-
-  .firecolor{
-    background: #e85c4e;
-  }
-
-  .watercolor{
-    background: #45cbff;
-  }
-
-  .naturecolor{
-    background: #adde77;
-  }
-
-  .electriccolor{
-    background: #ffe174;
-  }
-
-  .earthcolor{
-    background: #ba7a5c;
-
-  }
-
-  .mentalcolor{
-    background: #c36993;
-
-  }
-
-  .windcolor{
-    background: #08fab3;
-
-  }
-
-  .digitalcolor{
-    background: #94c0c1;
-
-  }
-
-  .meleecolor{
-    background: #fa9260;
-
-  }
-
-  .crystalcolor{
-    background: #ea4a68;
-
-  }
-
-  .toxiccolor{
-    background: #5c565c;
-
-  }
+  /*height: 340px;*/
+  height: fit-content;
+  overflow: hidden;
+}
 
 
-  .movecolor{
-    background: #2a2a2a;
-  }
 
-  .hpcolor{
-    background: #b13d3d;
-  }
+/*temtypes colors*/
+.neutralcolor {
+  background: #e6f7f7;
+}
 
-  .stacolor{
-    background: #1cd0d3;
-  }
-  /*end of temtypes colors*/
+.firecolor {
+  background: #e85c4e;
+}
 
-  .hpstaloc{
-    position: absolute;
-    right: 12px;
-    top: 0px;
-    height: inherit; 
-  }
-  .hpstaloc div{
-    align-items: center;
-    justify-content: center;
-    align-content: center;
-    height: 50%;
-    margin-top: 1px;
-  }
-  .hpstaloc div label{
-    font-size: small;
-    padding: 3px;
-    border-radius: 8px;
-    border: 1px solid black;
-    text-shadow:
-		-1px -1px 0 #000,
-		1px -1px 0 #000,
-		-1px 1px 0 #000,
-		1px 1px 0 #000;
-  }
-  
+.watercolor {
+  background: #45cbff;
+}
 
-  .temBorder{
-    width: 30%;
-    height: 98%;
-    border: 1px solid white;
-    display: block;
-    text-align: -webkit-center;
-    margin: 2px;
-  }
-  .centerContent{
-    display: flex;
-    align-items: center;
-    align-content: center;
-    justify-content: center;
-  }
-  label{
-    color: white;
-    width: 10%;
-    text-align: center;
-  }
+.naturecolor {
+  background: #adde77;
+}
 
-  .roundBtnDiv{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 50px;
-    height: 50px;
-    margin-top: 5px;
-    margin-bottom: 5px;
-  }
+.electriccolor {
+  background: #ffe174;
+}
 
-  .roundBtnDiv img {
-    background-color: white;
-    color: white;
-    border: 3pt solid lightblue;
-    font-size: 25px;
-    height: inherit;
-    width: inherit;
-    box-shadow: 0 2px 4px darkslategray;
-    cursor: pointer;
-    float: left;
-  }  
+.earthcolor {
+  background: #ba7a5c;
 
-  .round {
-    border-radius: 100%;
-  }
-  .statRow{
-    display: flex;
-    margin-top: 15px;
-    align-items: center;
-    align-content: center;
-    height: 16px;
-  }
+}
 
-  .finalRows{
-    display: flex;
-    margin-top: 13px;
-    height: 18px;
+.mentalcolor {
+  background: #c36993;
 
-    justify-content: center;
-  }
-  .finalRows label{
-    margin-left: 5px;
-    margin-right: 5px;
-  }
+}
 
-  .rowLabel{
-    font-size: x-small;
-    width: 25%;
-    text-align: center;
-  }
-  .value{
-    font-size: small;
-    width: 15%;
-  }
-  .slidecontainer {
-    width: 60%; /* Width of the outside container */
-    display: flex;
-    align-content: center;
-    align-items: center;
-    justify-content: center;
-  }
-  
-  /* The slider itself */
-  .slider {
-    -webkit-appearance: none;  /* Override default CSS styles */
-    appearance: none;
-    width: 100%; 
-    height: 5px; 
-    background: white; 
-    outline: none; 
-    opacity: 1; 
+.windcolor {
+  background: #08fab3;
 
-  }
+}
+
+.digitalcolor {
+  background: #94c0c1;
+
+}
+
+.meleecolor {
+  background: #fa9260;
+
+}
+
+.crystalcolor {
+  background: #ea4a68;
+
+}
+
+.toxiccolor {
+  background: #5c565c;
+
+}
+
+
+.movecolor {
+  background: #2a2a2a;
+}
+
+.hpcolor {
+  background: #b13d3d;
+}
+
+.stacolor {
+  background: #1cd0d3;
+}
+
+/*end of temtypes colors*/
+
+.hpstaloc {
+  position: absolute;
+  right: 12px;
+  top: 0px;
+  height: 20px;
+  /* maybe change */
+}
+
+.hpstaloc div {
+  align-items: center;
+  justify-content: center;
+  align-content: center;
+  height: 50%;
+  margin-top: 1px;
+}
+
+.hpstaloc div label {
+  font-size: small;
+  padding: 3px;
+  border-radius: 8px;
+  border: 1px solid black;
+  text-shadow:
+    -1px -1px 0 #000,
+    1px -1px 0 #000,
+    -1px 1px 0 #000,
+    1px 1px 0 #000;
+}
+
+
+.temBorder {
+  width: 30%;
+  height: 98%;
+  border: 1px solid white;
+  display: block;
+  text-align: -webkit-center;
+  margin: 2px;
+}
+
+.centerContent {
+  display: flex;
+  align-items: center;
+  align-content: center;
+  justify-content: center;
+}
+
+label {
+  color: white;
+  width: 10%;
+  text-align: center;
+}
+
+.roundBtnDiv {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 50px;
+  height: 50px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+.roundBtnDiv img {
+  background-color: white;
+  color: white;
+  border: 3pt solid lightblue;
+  font-size: 25px;
+  height: inherit;
+  width: inherit;
+  box-shadow: 0 2px 4px darkslategray;
+  cursor: pointer;
+  float: left;
+}
+
+.round {
+  border-radius: 100%;
+}
+
+.statRow {
+  display: flex;
+  margin-top: 15px;
+  align-items: center;
+  align-content: center;
+  height: 16px;
+}
+
+.finalRows {
+  display: flex;
+  margin-top: 13px;
+  height: 18px;
+
+  justify-content: center;
+}
+
+.finalRows label {
+  margin-left: 5px;
+  margin-right: 5px;
+}
+
+.rowLabel {
+  font-size: x-small;
+  width: 25%;
+  text-align: center;
+}
+
+.value {
+  font-size: small;
+  width: 15%;
+}
+
+.slidecontainer {
+  width: 60%;
+  /* Width of the outside container */
+  display: flex;
+  align-content: center;
+  align-items: center;
+  justify-content: center;
+}
+
+/* The slider itself */
+.slider {
+  -webkit-appearance: none;
+  /* Override default CSS styles */
+  appearance: none;
+  width: 100%;
+  height: 5px;
+  background: white;
+  outline: none;
+  opacity: 1;
+
+}
 
 .slider::-webkit-slider-thumb {
   -webkit-appearance: none;
@@ -211,41 +223,41 @@
   cursor: pointer;
 }
 
-.symbolLabel{
+.symbolLabel {
   font-size: 60px;
 }
 
-.green{
+.green {
   color: lime;
 }
 
-.red{
+.red {
   color: red;
 }
 
-.yellow{
+.yellow {
   color: yellow;
 }
 
-.perfect{
+.perfect {
   color: purple;
 }
 
 
 
 
-footer{
+footer {
   opacity: 1;
 }
 
-.footerLabel{
+.footerLabel {
   font-size: medium;
   font-style: italic;
   font-weight: bold;
   width: 100%;
 }
 
-.footerDiv{
+.footerDiv {
   display: block;
   text-align: center;
   margin-top: 20px;
@@ -253,12 +265,12 @@ footer{
   border: 1px solid red;
 }
 
-.imoves{
+.imoves {
   display: flex;
   flex-wrap: wrap;
 }
 
-.hold{
+.hold {
   width: 45px;
   height: 100%;
   transform: skew(340deg);
@@ -266,7 +278,8 @@ footer{
   left: -20px;
 
 }
-.ehold{
+
+.ehold {
   width: 9px;
   height: 100%;
   transform: skew(340deg);
@@ -275,7 +288,7 @@ footer{
   margin-left: 6px;
 }
 
-.temInheritMove{
+.temInheritMove {
   display: flex;
   overflow: hidden;
   float: left;
@@ -289,23 +302,23 @@ footer{
   position: relative;
 }
 
-.moves{
+.moves {
   display: flex;
 }
 
-.moveName{
+.moveName {
   position: absolute;
   top: 15px;
   left: 16px;
 }
 
-.moveName label{
+.moveName label {
   color: white;
   font-weight: bold;
   font-size: medium;
-	text-shadow:
-		-1px -1px 0 #000,
-		1px -1px 0 #000,
-		-1px 1px 0 #000,
-		1px 1px 0 #000;
+  text-shadow:
+    -1px -1px 0 #000,
+    1px -1px 0 #000,
+    -1px 1px 0 #000,
+    1px 1px 0 #000;
 }

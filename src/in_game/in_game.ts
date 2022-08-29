@@ -42,7 +42,6 @@ class InGame extends AppWindow {
       if (temData.isDataAvailable()) {
         overwolf.windows.obtainDeclaredWindow(kWindowNames.TemTemSelector, function (result: overwolf.windows.WindowResult) {
           overwolf.windows.hide(result.window.name);
-          //console.log('asdf');
         });
         overwolf.windows.obtainDeclaredWindow('damageCalculator', function (result: overwolf.windows.WindowResult) {
           overwolf.windows.restore(result.window.name);
@@ -55,7 +54,6 @@ class InGame extends AppWindow {
       if (temData.isDataAvailable()) {
         overwolf.windows.obtainDeclaredWindow(kWindowNames.TemTemSelector, function (result: overwolf.windows.WindowResult) {
           overwolf.windows.hide(result.window.name);
-          //console.log('asdf');
         });
         overwolf.windows.obtainDeclaredWindow('freeTem', function (result: overwolf.windows.WindowResult) {
           overwolf.windows.restore(result.window.name);
@@ -67,7 +65,6 @@ class InGame extends AppWindow {
     this.breedingCalc.addEventListener('click', function () {
       overwolf.windows.obtainDeclaredWindow(kWindowNames.TemTemSelector, function (result: overwolf.windows.WindowResult) {
         overwolf.windows.hide(result.window.name);
-        //console.log('asdf');
       });
       overwolf.windows.obtainDeclaredWindow('breedingCalc', function (result: overwolf.windows.WindowResult) {
         overwolf.windows.restore(result.window.name);

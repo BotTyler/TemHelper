@@ -53,10 +53,10 @@ class TemTemSelector extends AppWindow {
 
       // may need to make the following better
       searchEl.value = '';
-      list.forEach(element => {
-        (<HTMLElement>element).style.display = 'block';
+      // list.forEach(element => {
+      //   (<HTMLElement>element).style.display = 'block';
 
-      });
+      // });
 
 
       if (message.id === kWindowNames.damageCalculator || message.id == kWindowNames.freeTem) {
@@ -134,13 +134,10 @@ class TemTemSelector extends AppWindow {
     var rVal: boolean = false;
 
     if (TemTemSelector.breedingCalcInfo === undefined) {
-      //console.log('undefined variable in use breedingCalcInfo'); // should never reach this but just in case
       return rVal;
     } else {
       TemTemSelector.breedingCalcInfo.searchTypes.forEach(type => {
-        //console.log(type);
         if (type === 'none') {
-          //console.log('asdf');
           rVal = true;
         } else {
           // ready to check the types
@@ -155,7 +152,6 @@ class TemTemSelector extends AppWindow {
 
       });
     }
-    //console.log('undefined variable in use breedingCalcInfo'); // should never reach this but just in case
 
     return rVal; // default case if it does not match it should not show
   }
@@ -199,7 +195,7 @@ class TemTemSelector extends AppWindow {
         });
         element.isAvail = temDataAvailiable.yes;
         TemTemSelector.breedingCalcInfo = undefined;
-        overwolf.windows.sendMessage(TemTemSelector.windowName, TemTemSelector.num, element, () => { console.log('Msg has been sent to the ' + TemTemSelector.windowName + ' page, location and the dataobj') });
+        overwolf.windows.sendMessage(TemTemSelector.windowName, TemTemSelector.num, element, () => { /*('Msg has been sent to the ' + TemTemSelector.windowName + ' page, location and the dataobj')*/ });
       }
 
       temPicDiv.append(temPic);

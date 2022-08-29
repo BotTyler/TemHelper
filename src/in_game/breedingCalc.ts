@@ -64,10 +64,7 @@ class breedingCalc extends AppWindow {
         }
     }
     private sendData(searchTem: temListInterface, windowId: number) {
-        // female
-        overwolf.windows.obtainDeclaredWindow('TemTemSelector', function (result: overwolf.windows.WindowResult) {
-            overwolf.windows.restore(result.window.name);
-        });
+
 
         let sendData: breedingCalcSendAndRecieveData = {
             windowId: windowId,
@@ -75,7 +72,11 @@ class breedingCalc extends AppWindow {
         };
         //console.log(sendData);
 
-        overwolf.windows.sendMessage(kWindowNames.TemTemSelector, kWindowNames.breedingCalc, sendData, () => { console.log('Msg Has been sent to TemTemSeelctor waiting for resposne.') }); // send msg to the temtemselector page need to move to where one of the portait pictures are clicked
+        overwolf.windows.sendMessage(kWindowNames.TemTemSelector, kWindowNames.breedingCalc, sendData, () => { /*console.log('Msg Has been sent to TemTemSeelctor waiting for resposne.')*/ }); // send msg to the temtemselector page need to move to where one of the portait pictures are clicked
+
+        overwolf.windows.obtainDeclaredWindow(kWindowNames.TemTemSelector, function (result: overwolf.windows.WindowResult) {
+            overwolf.windows.restore(result.window.name);
+        });
     }
 
     private constructor() {
@@ -101,9 +102,7 @@ class breedingCalc extends AppWindow {
         });
 
         overwolf.windows.onMessageReceived.addListener(function (message) {
-            //console.log("MSG RECIEVED: " + message.id);
             const msgContents: temListInterface = message.content;
-            //console.log('msg contents: ' + msgContents.name + ' ID: ' + message.id);
             if (+message.id === 1) {
                 breedingCalc.temBreed1.setAttribute('src', msgContents.portraitWikiUrl);
                 breedingCalc.female = msgContents;
@@ -111,13 +110,10 @@ class breedingCalc extends AppWindow {
                 breedingCalc.temBreed2.setAttribute('src', msgContents.portraitWikiUrl);
                 breedingCalc.male = msgContents;
             }
-            //console.log('male: ' + breedingCalc.male + '\nfemale: ' + breedingCalc.female)
             if (breedingCalc.male != undefined && breedingCalc.female != undefined && breedingCalc.male.isAvail === temDataAvailiable.yes && breedingCalc.female.isAvail === temDataAvailiable.yes) {
                 // both are ready
                 breedingCalc.temBreed3.setAttribute('src', breedingCalc.female.portraitWikiUrl);
-                console.log(breedingCalc.temDataClass.getTechniqueList());
                 const eggMoves: eggMoveInterface[] = breedingCalc.temDataClass.getEggMoves(breedingCalc.male, breedingCalc.female);
-                console.log('egg moves' + eggMoves);
 
 
                 breedingCalc.eggMoveDiv.innerHTML = '';
@@ -186,7 +182,7 @@ class breedingCalc extends AppWindow {
                     const staDiv: HTMLElement = document.createElement('div');
                     const staLabel: HTMLElement = document.createElement('label');
                     staLabel.setAttribute('class', 'stacolor');
-                    hpLabel.innerHTML = element.staminaCost + '';
+                    staLabel.innerHTML = element.staminaCost + '';
 
                     // add the label to the sta
                     staDiv.append(staLabel);

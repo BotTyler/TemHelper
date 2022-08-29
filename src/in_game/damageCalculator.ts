@@ -44,19 +44,18 @@ class damageCalculator extends AppWindow {
         overwolf.windows.restore(result.window.name);
       });
 
-      overwolf.windows.sendMessage(kWindowNames.TemTemSelector, kWindowNames.damageCalculator, '1', () => { console.log('Msg Has been sent to TemTemSeelctor waiting for resposne.') }); // send msg to the temtemselector page need to move to where one of the portait pictures are clicked
+      overwolf.windows.sendMessage(kWindowNames.TemTemSelector, kWindowNames.damageCalculator, '1', () => { /*console.log('Msg Has been sent to TemTemSeelctor waiting for resposne.')*/ }); // send msg to the temtemselector page need to move to where one of the portait pictures are clicked
 
     });
     damageCalculator.temBtn2.addEventListener('click', () => {
       overwolf.windows.obtainDeclaredWindow('TemTemSelector', function (result: overwolf.windows.WindowResult) {
         overwolf.windows.restore(result.window.name);
       });
-      overwolf.windows.sendMessage(kWindowNames.TemTemSelector, kWindowNames.damageCalculator, '2', () => { console.log('Msg Has been sent to TemTemSeelctor waiting for resposne.') }); // send msg to the temtemselector page need to move to where one of the portait pictures are clicked
+      overwolf.windows.sendMessage(kWindowNames.TemTemSelector, kWindowNames.damageCalculator, '2', () => { /*console.log('Msg Has been sent to TemTemSeelctor waiting for resposne.')*/ }); // send msg to the temtemselector page need to move to where one of the portait pictures are clicked
 
     });
 
     overwolf.windows.onMessageReceived.addListener(function (message) {
-      //console.log("MSG RECIEVED: " + message.id);
       damageCalculator.setTableRow(message.content, +message.id, fields);
 
     });
